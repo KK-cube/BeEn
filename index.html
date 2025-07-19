@@ -1654,7 +1654,7 @@
           `);
 
                   sectionElements.forEach((element, index) => {
-                    if (element && element.style.opacity === "0") {
+                    if (element.style.opacity === "0") {
                       setTimeout(() => {
                         element.style.opacity = "1";
                         element.style.transform = "translateY(0)";
@@ -1687,7 +1687,7 @@
         // フォールバック：10秒後に全要素を強制表示
         setTimeout(() => {
           animationTargets.forEach((target) => {
-            if (target && target.style.opacity === "0") {
+            if (target.style.opacity === "0") {
               target.style.opacity = "1";
               target.style.transform = "translateY(0)";
             }

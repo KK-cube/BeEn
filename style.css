@@ -47,7 +47,7 @@ body {
   justify-content: center;
   color: #fff;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
-  margin-top: 12px;
+  margin-top: 24px;
   margin-left: 10px;
 }
 .header__catch {
@@ -80,6 +80,10 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: fixed;
+  top: 18px;
+  right: 56px;
+  z-index: 1000;
 }
 .header__menu-icon {
   display: flex;
@@ -176,7 +180,7 @@ body {
   transition: filter 0.18s;
   position: absolute;
   right: 9vw;
-  bottom: 16vh;
+  bottom: calc(16vh - 32px);
   z-index: 10;
 }
 .hero__cta-button:hover {
@@ -311,16 +315,6 @@ body {
 }
 
 /* snsセクション本体 */
-.sns {
-  background: #7e83c0;
-  color: #252a41;
-  position: relative;
-  min-height: 400px;
-  padding: 80px 0 80px 0;
-  overflow: visible;
-  z-index: 1;
-  margin-top: -60px; /* skills::afterのheightと同じ値で上書き！ */
-}
 .sns::before {
   content: "";
   position: absolute;
@@ -332,6 +326,18 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 40%, 0% 100%);
   z-index: 11;
 }
+/* snsセクションの画像位置と余白を調整 */
+.sns {
+  background: #7e83c0;
+  color: #252a41;
+  position: relative;
+  min-height: 400px;
+  padding: 40px 0 20px 0; /* 上下の余白を縮小 */
+  overflow: visible;
+  z-index: 1;
+  margin-top: -60px;
+}
+
 .sns__inner {
   position: relative;
   z-index: 2;
@@ -341,31 +347,9 @@ body {
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
-}
-.sns__subtitle {
-  display: inline-block;
-  font-size: 32px;
-  font-weight: bold;
-  background: #fff;
-  color: #7e83c0;
-  padding: 12px 36px;
-  border-radius: 18px;
-  box-shadow: 0 4px 16px rgba(40, 40, 60, 0.12);
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.sns__lead {
-  font-size: 40px;
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 30px;
-  position: relative;
-  z-index: 2;
+  padding: 40px 20px 0 20px; /* 上に40pxのパディングを追加 */
   width: 100%;
-  display: block;
-  text-align: center;
+  box-sizing: border-box;
 }
 
 .sns__img {
@@ -373,7 +357,58 @@ body {
   width: 100%;
   max-width: 600px;
   height: auto;
-  margin: 0 auto;
+  margin: -220px auto 0 auto; /* 画像を80px上に移動 */
+  display: block;
+}
+
+.sns__motion-text {
+  font-size: 24px;
+  margin-bottom: 10px; /* 30pxから10pxに縮小 */
+  color: #fff;
+  width: 100%;
+  display: block;
+  position: relative;
+  z-index: 2;
+  margin-left: 88px; /* 88pxを0に変更 */
+  margin-right: 0;
+  margin-top: 20px; /* -30pxから20pxに変更（正の値で適切な間隔を確保） */
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.sns__subtitle {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: bold;
+  background: #fff;
+  color: #7e83c0;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(40, 40, 60, 0.12);
+  margin-top: 0px; /* -40pxから-20pxに調整 */
+  margin-bottom: 20px; /* 間隔を統一 */
+  text-align: center;
+}
+
+.sns__lead {
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: block;
+  margin-top: -60px; /* 60px上に移動 */
+  margin-bottom: 20px; /* 10pxから20pxに変更（適切な間隔を確保） */
+  text-align: center;
+}
+/* snsセクションのテキスト要素の左端位置統一 */
+.sns__subtitle,
+.sns__lead,
+.sns__motion-text {
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .voices {
@@ -574,10 +609,39 @@ body {
   overflow: hidden;
 }
 
+.reason::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 180px;
+  background: #252a41;
+  clip-path: polygon(0 0, 100% 80%, 100% 100%, 0% 100%);
+  border-top: 4px solid #fff;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* レスポンシブ対応: reason::afterの高さ調整 */
+@media (max-width: 768px) {
+  .reason::after {
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reason::after {
+    height: 120px;
+  }
+}
+
 .reason__inner {
   width: 90%;
   max-width: 1100px;
   margin: 0 auto;
+  position: relative;
+  z-index: 3;
 }
 
 .reason__title-wrap {
@@ -645,25 +709,7 @@ body {
   z-index: 2;
   margin-bottom: 160px;
 }
-.reason__overlap {
-  position: relative;
-  width: 100vw;
-  height: 60px;
-  margin-top: -20px; /* ここで水色背景との隙間を最小化！微調整可 */
-  z-index: 10;
-  pointer-events: none;
-}
 
-.reason__polygon {
-  display: block;
-  width: 100vw;
-  height: 180px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin-top: -120px;
-  z-index: 2;
-}
 
 /* ====== 挫折率（dropout）セクション ====== */
 .dropout {
@@ -681,14 +727,14 @@ body {
 @media (max-width: 768px) {
   .dropout {
     min-height: 400px;
-    margin-top: -80px;
+    margin-top: -140px; /* reason::afterの高さと合わせる */
   }
 }
 
 @media (max-width: 480px) {
   .dropout {
     min-height: 320px;
-    margin-top: -60px;
+    margin-top: -120px; /* reason::afterの高さと合わせる */
   }
 }
 .dropout__divider-top {
@@ -698,8 +744,28 @@ body {
   left: 0;
   width: 100vw;
   height: 70px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #d94a49,
+    #d94a49 8px,
+    #252a41 0,
+    #252a41 16px
+  );
   z-index: 2;
   pointer-events: none;
+}
+
+/* レスポンシブ対応: dropout__divider-topの高さ調整 */
+@media (max-width: 768px) {
+  .dropout__divider-top {
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dropout__divider-top {
+    height: 50px;
+  }
 }
 .dropout__inner {
   width: 88%;
@@ -710,6 +776,19 @@ body {
   align-items: flex-start;
   position: relative;
   min-height: 450px;
+}
+
+/* レスポンシブ対応: dropout__innerのmargin調整 */
+@media (max-width: 768px) {
+  .dropout__inner {
+    margin: -54px 0 0 0; /* dropout__divider-topの高さに合わせる */
+  }
+}
+
+@media (max-width: 480px) {
+  .dropout__inner {
+    margin: -44px 0 0 0; /* dropout__divider-topの高さに合わせる */
+  }
 }
 .dropout__texts {
   flex: 1.8;
@@ -978,19 +1057,19 @@ body {
     padding-bottom: 0;
     gap: 20px;
   }
-  
+
   .trial__left,
   .trial2__left {
     width: 100%;
     text-align: center;
   }
-  
+
   .trial__right,
   .trial2__right {
     width: 100%;
     align-items: center;
   }
-  
+
   .trial__img,
   .trial2__img {
     position: relative;
@@ -999,13 +1078,13 @@ body {
     margin-top: 0;
     margin-bottom: 20px;
   }
-  
+
   .trial__title,
   .trial2__title {
     font-size: 2rem;
     margin-bottom: 30px;
   }
-  
+
   .trial__points,
   .trial2__points {
     font-size: 14px;
@@ -1013,14 +1092,14 @@ body {
     margin-top: 0;
     text-align: center;
   }
-  
+
   .trial__cta-button,
   .trial2__cta-button {
     font-size: 1.1rem;
     padding: 14px 32px;
     margin-top: 20px;
   }
-  
+
   .trial__balloon,
   .trial2__balloon {
     font-size: 1rem;
@@ -1106,8 +1185,6 @@ body {
     width: 100%;
   }
 }
-
-
 
 .classscene {
   background: #252a41;
@@ -1486,7 +1563,7 @@ body {
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 40px 20px 0 20px; /* 上に40pxのパディングを追加 */
 }
 
 .sns--mobile .sns__subtitle,
@@ -1508,12 +1585,13 @@ body {
   font-size: 40px;
   font-weight: bold;
   color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 20px; /* 10pxから20pxに変更（適切な間隔を確保） */
   position: relative;
   z-index: 2;
   width: 100%;
   display: block;
   text-align: center;
+  margin-top: -60px; /* 60px上に移動 */
 }
 
 .sns--mobile .sns__img,
@@ -1522,7 +1600,7 @@ body {
   width: 100%;
   max-width: 600px;
   height: auto;
-  margin: 0 auto;
+  margin: -300px auto 0 auto; /* 画像をさらに40px上に移動 */
 }
 
 /* ====== PC版専用スタイル（JavaScriptで動的に適用） ====== */
@@ -1605,7 +1683,7 @@ body {
   display: block; /* flexboxを無効化 */
   text-align: left;
   max-width: none;
-  margin: 0;
+  margin: 40px 0 0 0; /* 上に40pxのマージンを追加 */
   padding: 0;
 }
 
@@ -1618,7 +1696,7 @@ body {
   padding: 12px 36px;
   border-radius: 18px;
   box-shadow: 0 4px 16px rgba(40, 40, 60, 0.12);
-  margin: 60px 0 0 200px;
+  margin: 100px 0 0 200px; /* 60pxから100pxに変更 */
   text-align: center;
   position: relative;
   z-index: 3;
@@ -1628,7 +1706,7 @@ body {
   font-size: 40px;
   font-weight: bold;
   color: #fff;
-  margin: 50px 0 0 120px;
+  margin: 30px 0 0 120px; /* 90pxから30pxに変更（60px上に移動） */
   position: relative;
   z-index: 2;
   width: auto;
@@ -1641,7 +1719,7 @@ body {
   width: auto;
   max-width: none;
   margin-left: 720px;
-  margin-top: -160px;
+  margin-top: -320px; /* -280pxから-320pxに変更 */
   object-fit: cover;
   position: relative;
   z-index: 1;
@@ -1893,4 +1971,577 @@ body {
   }
 }
 
+/* ====== スマホ版レスポンシブ対応の改善 ====== */
 
+/* ヒーローセクションのスマホ対応 */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+    padding: 20px 0;
+  }
+
+  .hero__content {
+    min-height: 70vh;
+    padding: 60px 20px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero__logo-in-title {
+    height: 120px;
+    margin-bottom: 40px;
+    margin-right: -24px;
+    margin-top: -48px;
+  }
+
+  .hero__maincopy {
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .hero__de-kakou {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .hero__mirai {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .hero__cta-button {
+    position: absolute;
+    bottom: 52px;
+    right: 20px;
+    margin: 0;
+    display: block;
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 14px 30px;
+    z-index: 1000;
+    background: linear-gradient(90deg, #f5f7fb, #d8e1f4 90%);
+    border-radius: 32px;
+    color: #43506a;
+    font-weight: bold;
+    box-shadow: 0 6px 24px rgba(90, 110, 160, 0.18);
+    border: none;
+    text-decoration: none;
+    transition: filter 0.18s;
+  }
+}
+
+/* SNSセクションのスマホ対応改善 */
+@media (max-width: 768px) {
+  .sns {
+    padding: 60px 0 40px 0;
+    min-height: auto;
+  }
+
+  .sns__inner {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* ギャップを広げてテキスト重なりを防止 */
+  }
+
+  .sns__subtitle {
+    font-size: 24px;
+    padding: 10px 24px;
+    margin: 0; /* すべてのマージンをリセット */
+    position: static;
+    z-index: auto;
+  }
+
+  .sns__lead {
+    font-size: 26px; /* フォントサイズを少し小さく */
+    margin: 0; /* すべてのマージンをリセット */
+    line-height: 1.4;
+    position: static;
+    text-align: center;
+    z-index: auto;
+    padding: 0 10px; /* 左右にパディングを追加 */
+  }
+
+  .sns__motion-text {
+    font-size: 18px;
+    margin: 0; /* すべてのマージンをリセット */
+    text-align: center;
+    line-height: 1.5;
+    position: static;
+    z-index: auto;
+    padding: 0 10px; /* 左右にパディングを追加 */
+  }
+
+  .sns__img {
+    max-width: 90%;
+    margin: 0 auto;
+    border-radius: 12px;
+    position: static;
+    z-index: auto;
+  }
+}
+
+/* dropoutセクションのスマホ対応改善 */
+@media (max-width: 768px) {
+  .dropout {
+    padding: 40px 0;
+    margin-top: -60px;
+    min-height: auto;
+  }
+
+  .dropout__inner {
+    flex-direction: column;
+    margin: 0;
+    padding: 20px;
+    min-height: auto;
+    align-items: center;
+    gap: 30px; /* ギャップを広げて適切な間隔を確保 */
+  }
+
+  .dropout__texts {
+    margin-top: 20px;
+    width: 100%;
+    order: 1; /* テキストを最初に配置 */
+    text-align: center;
+  }
+
+  .dropout__title {
+    font-size: 1.8rem;
+    margin-bottom: 0; /* 下のマージンを0に */
+    margin-left: 0;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .dropout__title-large {
+    font-size: 2rem;
+  }
+
+  .dropout__title-emphasis {
+    font-size: 2.2rem;
+  }
+
+  .dropout__person {
+    position: static;
+    width: 200px;
+    margin: 0 auto; /* マージンを0 autoに変更 */
+    display: block;
+    order: 2; /* 画像を中間に配置 */
+  }
+
+  .dropout__bottom {
+    position: static;
+    margin: 0 auto; /* マージンを0 autoに変更 */
+    width: auto;
+    order: 3; /* 字幕を最後に配置 */
+  }
+
+  .dropout__subtitle {
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 1.8rem !important;
+    text-align: center !important;
+    color: #fff !important;
+    font-weight: bold !important;
+  }
+}
+
+/* より小さいスマホ画面対応 */
+@media (max-width: 480px) {
+  .hero__logo-in-title {
+    height: 100px;
+    margin-bottom: 30px;
+    margin-top: -48px;
+    margin-right: -24px;
+  }
+
+  .hero__maincopy {
+    font-size: 1.5rem;
+  }
+
+  .hero__cta-button {
+    bottom: 47px;
+    right: 15px;
+    font-size: 1rem;
+    padding: 12px 24px;
+    position: absolute;
+  }
+
+  /* skillsセクションの小画面対応を参考にして統一 */
+  .sns__subtitle {
+    font-size: 28px !important; /* skillsと比例して調整 */
+    padding: 10px 30px !important;
+  }
+
+  .sns__lead {
+    font-size: 32px !important; /* skillsと比例して調整 */
+    padding: 0 15px !important;
+  }
+
+  .sns__motion-text {
+    font-size: 20px !important; /* skillsと比例して調整 */
+    padding: 0 15px !important;
+  }
+
+  .sns__img {
+    max-width: 95%;
+  }
+
+  .sns__inner {
+    gap: 18px !important; /* skillsの間隔と統一 */
+  }
+
+  .dropout__title {
+    font-size: 1.5rem;
+  }
+
+  .dropout__title-large {
+    font-size: 1.7rem;
+  }
+
+  .dropout__title-emphasis {
+    font-size: 1.9rem;
+  }
+
+  .dropout__person {
+    width: 150px;
+  }
+
+  .dropout__subtitle {
+    font-size: 1.5rem;
+  }
+
+  .dropout__inner {
+    gap: 35px; /* より大きなギャップで適切な間隔を確保 */
+  }
+}
+
+/* 重なり防止のための追加調整 */
+@media (max-width: 768px) {
+  /* SNSセクションの絶対配置とマイナスマージンを完全リセット */
+  .sns__subtitle {
+    position: static !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .sns__lead {
+    position: static !important;
+    margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    transform: none !important;
+  }
+
+  .sns__motion-text {
+    position: static !important;
+    margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    transform: none !important;
+  }
+
+  .sns__img {
+    position: static !important;
+    margin: 0 auto !important;
+    margin-top: 0 !important;
+  }
+
+  /* dropoutセクションの配置調整 */
+  .dropout__person,
+  .dropout__bottom {
+    position: static !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+  }
+
+  /* flexboxレイアウトを強制適用 */
+  .sns__inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 40px !important;
+    padding: 40px 20px !important;
+  }
+
+  .dropout__inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 30px !important;
+  }
+}
+
+/* スマホ版でのSNSセクション完全修正 */
+@media (max-width: 768px) {
+  .sns__inner {
+    /* 既存のflexboxレイアウトを強制上書き */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 20px !important; /* skillsと同じ間隔に統一 */
+    padding: 60px 20px 40px 20px !important;
+    text-align: center !important;
+  }
+
+  /* SNSセクションの各要素を完全にリセット */
+  .sns__subtitle {
+    position: static !important;
+    margin: 0 !important;
+    padding: 12px 36px !important; /* skillsと同じパディング */
+    font-size: 32px !important; /* skillsと同じフォントサイズ */
+    order: 1 !important;
+    transform: none !important;
+    background: #fff !important;
+    color: #7e83c0 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 16px rgba(40, 40, 60, 0.12) !important;
+  }
+
+  .sns__lead {
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 20px !important;
+    font-size: 40px !important; /* skillsと同じフォントサイズ */
+    order: 2 !important;
+    transform: none !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    line-height: 1.4 !important;
+  }
+
+  .sns__motion-text {
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 20px !important;
+    font-size: 24px !important; /* skillsと同じフォントサイズ */
+    order: 3 !important;
+    transform: none !important;
+    color: #fff !important;
+    line-height: 1.5 !important;
+  }
+
+  .sns__img {
+    position: static !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    max-width: 90% !important;
+    order: 4 !important;
+    transform: none !important;
+    border-radius: 12px !important;
+  }
+}
+
+/* スマホ版でのdropoutセクション完全修正 */
+@media (max-width: 768px) {
+  .dropout__inner {
+    /* 既存のflexboxレイアウトを強制上書き */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 40px !important;
+    padding: 40px 20px !important;
+    margin: 0 !important;
+    min-height: auto !important;
+  }
+
+  /* dropoutセクションの各要素を完全にリセット */
+  .dropout__texts {
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    order: 1 !important;
+    transform: none !important;
+    text-align: center !important;
+  }
+
+  .dropout__title {
+    position: static !important;
+    margin: 0 0 20px 0 !important;
+    padding: 0 !important;
+    font-size: 1.8rem !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+
+  .dropout__person {
+    position: static !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 200px !important;
+    order: 2 !important;
+    transform: none !important;
+    display: block !important;
+  }
+
+  .dropout__bottom {
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    order: 3 !important;
+    transform: none !important;
+    text-align: center !important;
+  }
+
+  .dropout__subtitle {
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 1.8rem !important;
+    text-align: center !important;
+    color: #fff !important;
+    font-weight: bold !important;
+  }
+}
+
+/* ====== ヘッダーのレスポンシブ対応 ====== */
+@media (max-width: 768px) {
+  .header__inner {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 15px 15px 0 15px !important;
+    gap: 10px !important;
+    max-width: calc(100vw - 80px) !important; /* ハンバーガーボタンのスペースを確保 */
+  }
+
+  .header__info {
+    order: 2 !important;
+    margin: 0 !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+    margin-top: 0 !important;
+    margin-left: 8px !important;
+    max-width: calc(100% - 60px) !important; /* ハンバーガーボタンとの重なりを防ぐ */
+  }
+
+  .header__catch {
+    font-size: 0.75rem !important;
+    margin-bottom: 0 !important;
+    line-height: 1.1 !important;
+  }
+
+  .header__subtitle {
+    font-size: 0.85rem !important;
+    margin-bottom: 0 !important;
+    line-height: 1.1 !important;
+  }
+
+  .header__schools {
+    font-size: 0.7rem !important;
+    margin-top: 0 !important;
+    line-height: 1.1 !important;
+  }
+
+  .header__logo-img {
+    order: 1 !important;
+    height: 70px !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .header__menu-button {
+    position: fixed !important;
+    top: 15px !important;
+    right: 25px !important;
+    margin: 0 !important;
+    width: 40px !important;
+    height: 40px !important;
+    z-index: 1000 !important;
+    background: #232323 !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .header__menu-icon {
+    width: 24px !important;
+    height: 20px !important;
+    gap: 4px !important;
+  }
+
+  .header__menu-icon span {
+    height: 2px !important;
+  }
+}
+
+/* より小さいスマホ画面でのヘッダー調整 */
+@media (max-width: 480px) {
+  .header__inner {
+    padding: 12px 12px 0 12px !important;
+    gap: 6px !important;
+    max-width: calc(100vw - 70px) !important; /* ハンバーガーボタンのスペースを確保 */
+    align-items: center !important;
+  }
+
+  .header__info {
+    gap: 0 !important;
+    margin-top: 0 !important;
+    margin-left: 4px !important;
+    max-width: calc(100% - 50px) !important; /* ハンバーガーボタンとの重なりを防ぐ */
+  }
+
+  .header__catch {
+    font-size: 0.65rem !important;
+    margin-bottom: 0 !important;
+    line-height: 1.0 !important;
+  }
+
+  .header__subtitle {
+    font-size: 0.75rem !important;
+    margin-bottom: 0 !important;
+    line-height: 1.0 !important;
+  }
+
+  .header__schools {
+    font-size: 0.6rem !important;
+    margin-top: 0 !important;
+    line-height: 1.0 !important;
+  }
+
+  .header__logo-img {
+    height: 60px !important;
+  }
+
+  .header__menu-button {
+    position: fixed !important;
+    top: 12px !important;
+    right: 20px !important;
+    width: 36px !important;
+    height: 36px !important;
+    z-index: 1000 !important;
+    background: #232323 !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .header__menu-icon {
+    width: 20px !important;
+    height: 16px !important;
+    gap: 3px !important;
+  }
+
+  .header__menu-icon span {
+    height: 2px !important;
+  }
+}

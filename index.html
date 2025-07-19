@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BeEngineer | 中高生のためのプログラミング教室</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* カリキュラムセクション：横並びレイアウト */
+      .curriculum {
+        background: #ffffff;
+        padding: 60px 0;
+      }
+
+      .curriculum__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .curriculum__title {
+        color: #000000;
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+
+      .curriculum__intro {
+        color: #000000;
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 16px;
+      }
+
+      /* カリキュラムセクションの横並びレイアウト */
+      .curriculum__content {
+        display: flex;
+        gap: 30px;
+        margin-top: 40px;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .curriculum__column {
+        flex: 1;
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 30px 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #e0e0e0;
+      }
+
+      .curriculum__column:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .curriculum__column-header {
+        text-align: center;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #252a41;
+        padding-bottom: 15px;
+      }
+
+      .curriculum__column-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #252a41;
+        margin-bottom: 8px;
+      }
+
+      .curriculum__column-subtitle {
+        font-size: 14px;
+        color: #666;
+        margin: 0;
+      }
+
+      .curriculum__skills,
+      .curriculum__process-skills,
+      .curriculum__advanced-skills {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .curriculum__skill,
+      .curriculum__process-skill,
+      .curriculum__advanced-skill {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #7e83c0;
+      }
+
+      .curriculum__skill-icon,
+      .curriculum__process-icon,
+      .curriculum__advanced-icon {
+        color: #7e83c0;
+        font-weight: bold;
+        font-size: 16px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .curriculum__skill-text,
+      .curriculum__process-text,
+      .curriculum__advanced-text {
+        color: #333;
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      /* レスポンシブ対応 */
+      @media (max-width: 768px) {
+        .curriculum__content {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .curriculum__column {
+          padding: 20px 15px;
+          margin-bottom: 15px;
+        }
+
+        .curriculum__column-title {
+          font-size: 18px;
+        }
+
+        .faq__title {
+          font-size: 28px;
+        }
+
+        .faq__container {
+          padding: 0 15px;
+        }
+
+        .faq__group {
+          width: calc(100vw - 30px);
+          max-width: 95vw;
+          padding: 25px 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .curriculum__content {
+          gap: 15px;
+        }
+
+        .curriculum__column {
+          padding: 15px 12px;
+        }
+
+        .curriculum__column-title {
+          font-size: 16px;
+        }
+
+        .curriculum__skill-text,
+        .curriculum__process-text,
+        .curriculum__advanced-text {
+          font-size: 13px;
+        }
+
+        .faq__title {
+          font-size: 24px;
+        }
+
+        .faq__container {
+          padding: 0 10px;
+        }
+
+        .faq__group {
+          width: calc(100vw - 20px);
+          max-width: 98vw;
+          padding: 20px 12px;
+        }
+
+        .faq__category {
+          font-size: 16px;
+        }
+
+        .faq__question-text {
+          font-size: 14px;
+        }
+      }
+
+      /* 料金、FAQ、無料体験セクションの背景調整 */
+      .price {
+        background: #ffffff;
+        margin: 0;
+        padding: 60px 0;
+      }
+
+      .faq-bg-top,
+      .faq-bg-bottom {
+        background: #252a41 !important;
+        height: 20px;
+        margin: 0;
+        width: 100%;
+      }
+
+      /* FAQセクション - 完全リニューアル版 */
+      .faq {
+        background: #252a41 !important;
+        padding: 50px 0; /* 80pxから50pxに縮小 */
+        margin: 0;
+        width: 100%;
+        min-height: 400px; /* 600pxから400pxに縮小 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .faq__title {
+        color: #ffffff;
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+        margin: 0 0 40px 0; /* 60pxから40pxに縮小 */
+        letter-spacing: 0.03em;
+      }
+
+      .faq__wrapper {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .faq__panel {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 30px; /* 40pxから30pxに縮小 */
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto 25px auto; /* 40pxから25pxに縮小 */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        box-sizing: border-box;
+      }
+
+      .faq__category {
+        color: #252a41;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px; /* 30pxから20pxに縮小 */
+        padding-bottom: 10px; /* 15pxから10pxに縮小 */
+        border-bottom: 3px solid #7e83c0;
+        text-align: center;
+      }
+
+      .faq__item {
+        margin-bottom: 15px; /* 20pxから15pxに縮小 */
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      .faq__question {
+        background: #f8f9fa;
+        border: none;
+        padding: 16px; /* 20pxから16pxに縮小 */
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        transition: background-color 0.3s ease;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .faq__question:hover {
+        background: #e9ecef;
+      }
+
+      .faq__question.active {
+        background: #e3f2fd;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .faq__icon {
+        background: #7e83c0;
+        color: #ffffff;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .faq__question-text {
+        flex: 1;
+        color: #333;
+        font-weight: 600;
+      }
+
+      .faq__toggle-icon {
+        color: #7e83c0;
+        font-size: 20px;
+        font-weight: bold;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+      }
+
+      .faq__question.active .faq__toggle-icon {
+        transform: rotate(45deg);
+      }
+
+      .faq__answer {
+        background: #ffffff;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+      }
+
+      .faq__answer.show {
+        max-height: 200px;
+        padding: 16px; /* 20pxから16pxに縮小 */
+      }
+
+      .faq__answer-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .faq__answer .faq__icon {
+        background: #252a41;
+      }
+
+      .faq__answer-text {
+        flex: 1;
+        color: #333;
+        font-size: 15px;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      /* レスポンシブ対応 */
+      @media (max-width: 768px) {
+        .faq {
+          padding: 60px 0;
+        }
+
+        .faq__title {
+          font-size: 36px;
+          margin-bottom: 40px;
+        }
+
+        .faq__wrapper {
+          padding: 0 15px;
+        }
+
+        .faq__panel {
+          padding: 30px 20px;
+          margin-bottom: 30px;
+        }
+
+        .faq__category {
+          font-size: 20px;
+          margin-bottom: 25px;
+        }
+
+        .faq__question {
+          padding: 12px; /* 15pxから12pxに縮小 */
+          font-size: 15px;
+        }
+
+        .faq__question-text {
+          font-size: 15px;
+        }
+
+        .faq__answer.show {
+          padding: 12px; /* 15pxから12pxに縮小 */
+        }
+
+        .faq__answer-text {
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .faq {
+          padding: 30px 0; /* 40pxから30pxに縮小 */
+        }
+
+        .faq__title {
+          font-size: 28px;
+          margin-bottom: 25px; /* 30pxから25pxに縮小 */
+        }
+
+        .faq__wrapper {
+          padding: 0 10px;
+        }
+
+        .faq__panel {
+          padding: 15px; /* 20px 15pxから15pxに統一・縮小 */
+          margin-bottom: 15px; /* 20pxから15pxに縮小 */
+        }
+
+        .faq__category {
+          font-size: 18px;
+          margin-bottom: 20px;
+        }
+
+        .faq__question {
+          padding: 12px;
+          font-size: 14px;
+          gap: 10px;
+        }
+
+        .faq__icon {
+          width: 24px;
+          height: 24px;
+          font-size: 12px;
+        }
+
+        .faq__question-text {
+          font-size: 14px;
+        }
+
+        .faq__toggle-icon {
+          font-size: 18px;
+        }
+
+        .faq__answer.show {
+          padding: 12px;
+        }
+
+        .faq__answer-text {
+          font-size: 13px;
+        }
+      }
+
+      .trial2 {
+        background: #7e83c0;
+        margin: 0;
+        padding: 32px 0 30px 0; /* trialと完全統一 */
+      }
+
+      /* セクション間の隙間を完全に除去 */
+      .price + .faq-bg-top,
+      .faq-bg-top + .faq,
+      .faq + .faq-bg-bottom,
+      .faq-bg-bottom + .trial2 {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+
+      /* FAQセクション全体の紺色背景を強制 */
+      .faq-bg-top + .faq + .faq-bg-bottom {
+        background: #252a41 !important;
+      }
+
+      /* 念のため、body の背景色も調整 */
+      body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header__inner">
+        <div class="header__logo">
+          <img src="logo.jpg" alt="BeEngineer ロゴ" class="header__logo-img" />
+        </div>
+        <div class="header__info">
+          <div class="header__catch">周りの同級生と差をつけろ！</div>
+          <div class="header__subtitle">
+            中高生のための実践的プログラミング教室
+          </div>
+          <div class="header__schools">
+            京大本校・梅田校・東京飯田橋校・横浜校・秋葉原校
+          </div>
+        </div>
+        <button class="header__menu-button" aria-label="メニューを開く">
+          <span class="header__menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ====== ファーストビュー（現状のまま） ====== -->
+    <section class="hero">
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <h1 class="hero__title">
+          <img
+            src="logo.png"
+            alt="BeEngineer ロゴ"
+            class="hero__logo-in-title"
+          />
+          <span class="hero__maincopy">
+            <span class="hero__de-kakou">で描こう。</span><br />
+            <span class="hero__mirai">未来の設計図。</span>
+          </span>
+        </h1>
+        <a href="#" class="hero__cta-button">まずは無料体験から</a>
+      </div>
+      <!-- ★SVG：白線＋紺色パネルを「hero内・最下部」に重ねてかぶせる -->
+      <svg
+        class="hero__divider"
+        width="100%"
+        height="110"
+        viewBox="0 0 1920 110"
+        preserveAspectRatio="none"
+      >
+        <!-- 1. 白い斜め線（stroke） -->
+        <line
+          x1="0"
+          y1="18"
+          x2="1920"
+          y2="90"
+          stroke="#fff"
+          stroke-width="20"
+        />
+        <!-- 2. 紺色パネル（polygon） -->
+        <polygon points="0,30 1920,100 1920,500 0,110" fill="#252A41" />
+      </svg>
+    </section>
+
+    <!-- ====== セクション2（skills） ====== -->
+    <section class="skills">
+      <div class="skills__inner">
+        <h2 class="skills__title">身につく実践的なスキル。</h2>
+        <p class="skills__motion-text">
+          BeEngineerでは1年間のカリキュラムで<br />Webサイト開発ができるようになります。
+        </p>
+        <p class="skills__subtitle">Webサイト開発</p>
+        <p class="skills__thirdtitle">開発初心者の登竜門。</p>
+        <img src="website.jpg" alt="Webページのサンプル" class="skills__img" />
+      </div>
+    </section>
+
+    <svg
+      class="section-divider-line"
+      width="100%"
+      height="60"
+      viewBox="0 0 1920 60"
+      preserveAspectRatio="none"
+    >
+      <line x1="0" y1="95" x2="1920" y2="0" stroke="#fff" stroke-width="50" />
+    </svg>
+
+    <!-- ====== セクション3（sns） ====== -->
+    <section class="sns">
+      <div class="sns__inner">
+        <h2 class="sns__subtitle">SNS開発</h2>
+        <div class="sns__lead">使う側から作る側へ。</div>
+        <img src="sns.svg" alt="SNSのサンプル" class="sns__img" />
+      </div>
+    </section>
+
+    <svg
+      class="sns__divider"
+      width="100%"
+      height="70"
+      viewBox="0 0 1920 70"
+      preserveAspectRatio="none"
+    >
+      <!-- 下に白い斜めカット -->
+      <polygon points="0,0 1920,0 1920,60 0,0" fill="#7E83C0" />
+    </svg>
+
+    <section class="voices">
+      <h2 class="voices__title">BeEngineer卒業生の声</h2>
+      <div class="voices__list">
+        <div class="voices__card">
+          <img src="voice1.png" alt="卒業生1" class="voices__photo" />
+          <div class="voices__name">Aさん（高2）</div>
+          <div class="voices__comment">
+            プログラミング未経験でしたが、<br />
+            先生や友達と一緒に楽しく学べました！
+          </div>
+        </div>
+        <div class="voices__card">
+          <img src="voice2.png" alt="卒業生2" class="voices__photo" />
+          <div class="voices__name">Bさん（高3）</div>
+          <div class="voices__comment">
+            自分だけのWebアプリを作れたのが<br />
+            本当に嬉しかったです！
+          </div>
+        </div>
+        <div class="voices__card">
+          <img src="voice3.png" alt="卒業生3" class="voices__photo" />
+          <div class="voices__name">Cさん（中3）</div>
+          <div class="voices__comment">
+            先生が丁寧に教えてくれて、<br />
+            苦手意識がなくなりました！
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trial">
+      <div class="trial__content">
+        <div class="trial__left">
+          <h2 class="trial__title">
+            まずは、<br />
+            無料体験会に参加！
+          </h2>
+          <ul class="trial__points">
+            <li>
+              ・京大生中心のエンジニアによるプログラミング講座を体験することができます。
+            </li>
+            <li>
+              ・MacBookを１人１台ご用意しています。パソコンの用意は必要ございません。
+            </li>
+          </ul>
+        </div>
+        <div class="trial__right">
+          <div class="trial__balloon">
+            「やってみたい」が<br />始まりの合図！
+          </div>
+          <img src="teacher.png" alt="講師のイラスト" class="trial__img" />
+          <a href="#" class="trial__cta-button">無料体験に申し込む</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- trialセクションの直後に追加 -->
+    <section class="reason">
+      <div class="reason__inner">
+        <div class="reason__title-wrap">
+          <h2 class="reason__title">なぜ、BeEngineerに入る必要があるの？</h2>
+        </div>
+        <div class="reason__balloon-wrap">
+          <div class="reason__balloon">
+            「プログラミングは独学でもできる」<br />
+            って聞いたことがあります
+          </div>
+          <img
+            src="reason_person.png"
+            alt="考えている人物イラスト"
+            class="reason__person"
+          />
+        </div>
+      </div>
+    </section>
+    <div class="reason__overlap">
+      <svg
+        class="reason__polygon"
+        width="100%"
+        height="80"
+        viewBox="0 0 1920 80"
+        preserveAspectRatio="none"
+      >
+        <polygon points="0,0 1920,30 1920,40 0,40" fill="#252A41" />
+        <line x1="0" y1="4" x2="1920" y2="34" stroke="#fff" stroke-width="8" />
+      </svg>
+    </div>
+    <section class="dropout">
+      <div class="dropout__inner">
+        <div class="dropout__texts">
+          <h2 class="dropout__title">
+            プログラミング学習において<br />
+            <span class="dropout__title-large">
+              独学での挫折率はなんと<br />
+              <span class="dropout__title-emphasis">8割から9割</span
+              >といわれています！！
+            </span>
+          </h2>
+          <div class="dropout__bottom">
+            <span class="dropout__subtitle">しかし、BeEnなら…！</span>
+          </div>
+        </div>
+        <img
+          src="dropout_person.png"
+          alt="悩む人物イラスト"
+          class="dropout__person"
+        />
+      </div>
+    </section>
+    <!-- dropoutとreason2の間に赤矢印を独立配置 -->
+    <div class="dropout__arrows-bridge">
+      <div class="dropout__arrows">
+        <span class="dropout__arrow">&#8595;</span>
+        <span class="dropout__arrow">&#8595;</span>
+        <span class="dropout__arrow">&#8595;</span>
+      </div>
+    </div>
+    <section class="reason2">
+      <div class="reason2__item angle-left">
+        生徒のレベルに合わせた授業だから、<br />パソコン初心者でも心配なし！
+      </div>
+      <div class="reason2__item angle-right">
+        大学生エンジニア中心の手厚いサポートが<br />ついているので、いつでも質問可能！
+      </div>
+      <div class="reason2__item angle-left">
+        一緒に授業を受ける生徒たちと楽しく、<br />仲良くスキルを高めあうことができる！
+      </div>
+    </section>
+    <section class="trial2">
+      <div class="trial2__content">
+        <div class="trial2__left">
+          <h2 class="trial2__title">
+            まずは、<br />
+            無料体験会に参加！
+          </h2>
+          <ul class="trial2__points">
+            <li>
+              ・京大生中心のエンジニアによるプログラミング講座を体験することができます。
+            </li>
+            <li>
+              ・MacBookを１人１台ご用意しています。パソコンの用意は必要ございません。
+            </li>
+          </ul>
+        </div>
+        <div class="trial2__right">
+          <div class="trial2__balloon">
+            「やってみたい」が<br />始まりの合図！
+          </div>
+          <img src="teacher.png" alt="講師のイラスト" class="trial2__img" />
+          <a href="#" class="trial2__cta-button">無料体験に申し込む</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BeEnで学べることセクション -->
+    <section class="curriculum">
+      <div class="curriculum__inner">
+        <h2 class="curriculum__title">BeEnで学べること</h2>
+        <p class="curriculum__intro">
+          充実した3段階のカリキュラムでプログラミングスキルを習得
+        </p>
+
+        <div class="curriculum__content">
+          <!-- 1年目で学習 -->
+          <div class="curriculum__column">
+            <div class="curriculum__column-header">
+              <h3 class="curriculum__column-title">1年目で学習</h3>
+              <p class="curriculum__column-subtitle">基礎から実践まで</p>
+            </div>
+            <div class="curriculum__skills">
+              <div class="curriculum__skill">
+                <div class="curriculum__skill-icon">◆</div>
+                <div class="curriculum__skill-text">Webサイトの開発</div>
+              </div>
+              <div class="curriculum__skill">
+                <div class="curriculum__skill-icon">◆</div>
+                <div class="curriculum__skill-text">チャットアプリの開発</div>
+              </div>
+              <div class="curriculum__skill">
+                <div class="curriculum__skill-icon">◆</div>
+                <div class="curriculum__skill-text">
+                  問題を解決するためのアプリの機能の設計
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 学習技術 -->
+          <div class="curriculum__column">
+            <div class="curriculum__column-header">
+              <h3 class="curriculum__column-title">学習技術</h3>
+              <p class="curriculum__column-subtitle">習得する技術スタック</p>
+            </div>
+            <div class="curriculum__process-skills">
+              <div class="curriculum__process-skill">
+                <div class="curriculum__process-icon">◆</div>
+                <div class="curriculum__process-text">
+                  HTML、CSS、Pythonなど主要な言語の基礎知識
+                </div>
+              </div>
+              <div class="curriculum__process-skill">
+                <div class="curriculum__process-icon">◆</div>
+                <div class="curriculum__process-text">
+                  Djangoを活用したWebアプリケーション開発の技術
+                </div>
+              </div>
+              <div class="curriculum__process-skill">
+                <div class="curriculum__process-icon">◆</div>
+                <div class="curriculum__process-text">
+                  データベース設計とAPI開発
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2年目以降 -->
+          <div class="curriculum__column">
+            <div class="curriculum__column-header">
+              <h3 class="curriculum__column-title">2年目以降</h3>
+              <p class="curriculum__column-subtitle">実践的なアプリ開発</p>
+            </div>
+            <div class="curriculum__advanced-skills">
+              <div class="curriculum__advanced-skill">
+                <div class="curriculum__advanced-icon">◆</div>
+                <div class="curriculum__advanced-text">
+                  決済機能のあるECサイト
+                </div>
+              </div>
+              <div class="curriculum__advanced-skill">
+                <div class="curriculum__advanced-icon">◆</div>
+                <div class="curriculum__advanced-text">SNSアプリ</div>
+              </div>
+              <div class="curriculum__advanced-skill">
+                <div class="curriculum__advanced-icon">◆</div>
+                <div class="curriculum__advanced-text">
+                  AIを活用したWebアプリケーション
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="classscene">
+      <div class="classscene__inner">
+        <div class="classscene__left">
+          <h2 class="classscene__title">授業風景</h2>
+          <ul class="classscene__list">
+            <li>
+              ・全員に1人1台のMacBookを貸与。最新の開発環境で学習できます。
+            </li>
+            <li>
+              ・大学生エンジニアを中心とした講師陣が、実践的で質の高い授業を担当。
+            </li>
+            <li>
+              ・メイン講師に加え、サポート講師にもいつでも質問可能。安心のサポート体制です。
+            </li>
+          </ul>
+        </div>
+        <div class="classscene__right">
+          <img src="授業風景.png" alt="授業風景" class="classscene__img" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 講師紹介セクション -->
+    <section class="teachers">
+      <div class="teachers__inner">
+        <h2 class="teachers__title">講師紹介</h2>
+        <p class="teachers__subtitle">
+          プログラミングの楽しさはもちろん、時には厳しく技術面までしっかり指導します。
+        </p>
+
+        <div class="teachers__slider-container">
+          <div class="teachers__slider">
+            <div class="teachers__card">
+              <img src="teacher1.png" alt="田中先生" class="teachers__photo" />
+              <div class="teachers__info">
+                <h3 class="teachers__name">田中 健太</h3>
+                <p class="teachers__role">代表講師</p>
+                <p class="teachers__description">
+                  プログラミング教育歴10年以上。元エンジニアとして大手IT企業で働いた経験を活かし、実践的なプログラミング教育を行っています。初心者にも分かりやすい指導で定評があります。
+                </p>
+              </div>
+            </div>
+
+            <div class="teachers__card">
+              <img src="teacher2.png" alt="佐藤先生" class="teachers__photo" />
+              <div class="teachers__info">
+                <h3 class="teachers__name">佐藤 美咲</h3>
+                <p class="teachers__role">講師</p>
+                <p class="teachers__description">
+                  フロントエンド開発を専門とする現役エンジニア。デザインからプログラミングまで幅広くカバーし、創造性を重視した授業を展開しています。生徒の個性を活かす指導が得意です。
+                </p>
+              </div>
+            </div>
+
+            <div class="teachers__card">
+              <img src="teacher3.png" alt="鈴木先生" class="teachers__photo" />
+              <div class="teachers__info">
+                <h3 class="teachers__name">鈴木 大輔</h3>
+                <p class="teachers__role">講師</p>
+                <p class="teachers__description">
+                  バックエンド開発のスペシャリスト。データベース設計からサーバー構築まで、技術的な深い部分まで丁寧に指導します。論理的思考力を育む授業を心がけています。
+                </p>
+              </div>
+            </div>
+
+            <div class="teachers__card">
+              <img src="teacher4.png" alt="高橋先生" class="teachers__photo" />
+              <div class="teachers__info">
+                <h3 class="teachers__name">高橋 麻衣</h3>
+                <p class="teachers__role">講師</p>
+                <p class="teachers__description">
+                  AI・機械学習を専門とする研究者出身の講師。最新技術トレンドを授業に取り入れ、未来志向のプログラミング教育を実践しています。探求心を刺激する授業が人気です。
+                </p>
+              </div>
+            </div>
+
+            <div class="teachers__card">
+              <img src="teacher5.png" alt="山田先生" class="teachers__photo" />
+              <div class="teachers__info">
+                <h3 class="teachers__name">山田 翔太</h3>
+                <p class="teachers__role">講師</p>
+                <p class="teachers__description">
+                  スタートアップ企業での開発経験を持つ若手講師。アジャイル開発やチーム開発の実践的なスキルを教えています。生徒との距離が近く、親しみやすい指導スタイルが特徴です。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="price">
+      <div class="price__box">
+        <div class="price__title">料金</div>
+        <div class="price__body">
+          <div class="price__headline">通常授業のご案内</div>
+          <ul class="price__list">
+            <li>
+              <span class="price__item-label">■ 月額料金（税込）</span><br />
+              <span class="price__item-value">￥25,850</span>
+            </li>
+            <li>
+              <span class="price__item-label">■ 開講期間</span><br />
+              <span class="price__item-value"
+                >毎年4月中旬～翌年3月中旬（1年間）</span
+              >
+            </li>
+            <li>
+              <span class="price__item-label">■ 授業回数</span><br />
+              <span class="price__item-value"
+                >月3回（1回あたり2時間）<br />年間全36コマ</span
+              >
+            </li>
+            <li>
+              <span class="price__item-label">■ お支払い方法</span><br />
+              <span class="price__item-value"
+                >クレジットカード決済にて承っております。</span
+              >
+            </li>
+          </ul>
+          <div class="price__schools">
+            <div class="price__school">京大本校</div>
+            <div class="price__school">梅田校</div>
+            <div class="price__school price__school--double">
+              東京<br />飯田橋校
+            </div>
+            <div class="price__school">横浜校</div>
+            <div class="price__school">秋葉原校</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="faq-bg-top"></div>
+    <section class="faq">
+      <h2 class="faq__title">よくあるご質問</h2>
+
+      <div class="faq__wrapper">
+        <!-- 初めての方へ -->
+        <div class="faq__panel">
+          <h3 class="faq__category">▼ 初めての方へ</h3>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text">何歳から通えますか？</span>
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >中学1年生からご参加いただけます。高校生まで幅広く対応しており、年齢に応じたカリキュラムをご用意しています。</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text">体験レッスンはありますか？</span>
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >はい、無料体験会をご用意しています。実際の授業の雰囲気を体験していただけますので、お気軽にお申し込みください。</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text"
+                >プログラミング未経験でも大丈夫ですか？</span
+              >
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >もちろんです！未経験者を前提としたカリキュラムになっており、基礎から丁寧に指導いたします。現在通学している生徒の約8割が未経験からのスタートです。</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 授業について -->
+        <div class="faq__panel">
+          <h3 class="faq__category">▼ 授業について</h3>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text"
+                >1回の授業時間は何分ですか？</span
+              >
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >1回の授業は2時間（120分）です。集中して学習に取り組める適切な時間設定となっています。</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text"
+                >授業についていけるか心配です</span
+              >
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >個別のサポート体制を整えておりますので、ご安心ください。メイン講師のほかにサポート講師も常駐しており、いつでも質問していただけます。</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text">どんなことを学べますか？</span>
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >HTML、CSS、Python、Djangoなどを使ったWebサイト開発や、チャットアプリ、SNSアプリなどの実践的なプログラミングを学ぶことができます。</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 費用・お支払い -->
+        <div class="faq__panel">
+          <h3 class="faq__category">▼ 費用・お支払い</h3>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text">入会金はかかりますか？</span>
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >入会金は22,000円（税込）となっています。初回のみのお支払いです。</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text"
+                >月謝以外に費用はかかりますか？</span
+              >
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >基本的には月謝のみです。MacBookは無料でお貸出ししており、教材費なども月謝に含まれています。</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text">途中退会はできますか？</span>
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >はい、可能です。退会をご希望の場合は、退会希望月の前月末までにお申し出ください。</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 保護者の方向け -->
+        <div class="faq__panel">
+          <h3 class="faq__category">▼ 保護者の方向け</h3>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text"
+                >プログラミングを学ぶとどんな力が付きますか？</span
+              >
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >論理的思考力、問題解決力、創造力などが自然に身につきます。また、将来的にIT業界で活躍するための基礎スキルを習得できます。</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text">親の送迎は必要ですか？</span>
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >各校舎とも駅から徒歩圏内にありますので、電車での通学も可能です。お子様の年齢や通学距離に応じてご判断ください。</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question js-faq-toggle">
+              <span class="faq__icon">Q</span>
+              <span class="faq__question-text">進捗状況を確認できますか？</span>
+              <span class="faq__toggle-icon">＋</span>
+            </button>
+            <div class="faq__answer">
+              <div class="faq__answer-content">
+                <span class="faq__icon">A</span>
+                <span class="faq__answer-text"
+                  >定期的に学習進捗レポートをお送りしており、お子様の成長をご確認いただけます。また、保護者面談も実施しております。</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="faq-bg-bottom"></div>
+    <section class="trial2">
+      <div class="trial2__content">
+        <div class="trial2__left">
+          <h2 class="trial2__title">
+            まずは、<br />
+            無料体験会に参加！
+          </h2>
+          <ul class="trial2__points">
+            <li>
+              ・京大生中心のエンジニアによるプログラミング講座を体験することができます。
+            </li>
+            <li>
+              ・MacBookを１人１台ご用意しています。パソコンの用意は必要ございません。
+            </li>
+          </ul>
+        </div>
+        <div class="trial2__right">
+          <div class="trial2__balloon">
+            「やってみたい」が<br />始まりの合図！
+          </div>
+          <img src="teacher.png" alt="講師のイラスト" class="trial2__img" />
+          <a href="#" class="trial2__cta-button">無料体験に申し込む</a>
+        </div>
+      </div>
+    </section>
+    <script>
+      // FAQ アコーディオン機能 - 完全リニューアル版
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggles = document.querySelectorAll(".js-faq-toggle");
+
+        toggles.forEach((toggle) => {
+          toggle.addEventListener("click", function () {
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector(".faq__toggle-icon");
+            const isOpen = answer.classList.contains("show");
+
+            // 他のすべてのFAQを閉じる
+            toggles.forEach((otherToggle) => {
+              const otherAnswer = otherToggle.nextElementSibling;
+              const otherIcon = otherToggle.querySelector(".faq__toggle-icon");
+
+              otherAnswer.classList.remove("show");
+              otherToggle.classList.remove("active");
+              otherIcon.textContent = "＋";
+            });
+
+            // クリックされたFAQの開閉処理
+            if (!isOpen) {
+              answer.classList.add("show");
+              this.classList.add("active");
+              icon.textContent = "－";
+            }
+          });
+        });
+      });
+
+      // 講師紹介スライダー（無限ループ対応版）
+      document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.querySelector(".teachers__slider");
+        if (!slider) return;
+
+        const cards = slider.querySelectorAll(".teachers__card");
+        const totalCards = cards.length;
+
+        // カードを複製して無限ループを作成
+        cards.forEach((card) => {
+          const clone = card.cloneNode(true);
+          slider.appendChild(clone);
+        });
+
+        // スライダーの設定
+        let currentIndex = 0;
+        const cardWidth = 350; // カード幅 + gap
+
+        // 初期設定
+        slider.style.transition = "transform 0.8s ease-in-out";
+        slider.style.transform = "translateX(0px)";
+
+        function slideNext() {
+          currentIndex++;
+          slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+          // 最後のカードに到達したら、アニメーション後に最初に戻る
+          if (currentIndex >= totalCards) {
+            setTimeout(() => {
+              slider.style.transition = "none";
+              currentIndex = 0;
+              slider.style.transform = "translateX(0px)";
+
+              // トランジションを再有効化
+              setTimeout(() => {
+                slider.style.transition = "transform 0.8s ease-in-out";
+              }, 50);
+            }, 800); // アニメーション時間と同じ
+          }
+        }
+
+        // 3秒ごとに自動スライド
+        setInterval(slideNext, 3000);
+      });
+    </script>
+
+    <!-- お問い合わせフォーム -->
+    <section class="contact">
+      <div class="contact__inner">
+        <h2 class="contact__title">お問い合わせ</h2>
+        <p class="contact__subtitle">
+          ご質問やお申し込みは以下のフォームからお気軽にお問い合わせください。
+        </p>
+
+        <form class="contact__form">
+          <div class="contact__form-group">
+            <label for="name" class="contact__label"
+              >お名前 <span class="contact__required">必須</span></label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="contact__input"
+              placeholder="山田 太郎"
+              required
+            />
+          </div>
+
+          <div class="contact__form-group">
+            <label for="grade" class="contact__label"
+              >学年 <span class="contact__required">必須</span></label
+            >
+            <select id="grade" name="grade" class="contact__select" required>
+              <option value="">選択してください</option>
+              <option value="中学1年生">中学1年生</option>
+              <option value="中学2年生">中学2年生</option>
+              <option value="中学3年生">中学3年生</option>
+              <option value="高校1年生">高校1年生</option>
+              <option value="高校2年生">高校2年生</option>
+              <option value="高校3年生">高校3年生</option>
+            </select>
+          </div>
+
+          <div class="contact__form-group">
+            <label for="school" class="contact__label"
+              >学校名 <span class="contact__required">必須</span></label
+            >
+            <input
+              type="text"
+              id="school"
+              name="school"
+              class="contact__input"
+              placeholder="○○高等学校"
+              required
+            />
+          </div>
+
+          <div class="contact__form-group">
+            <label for="campus" class="contact__label"
+              >ご希望の校舎 <span class="contact__required">必須</span></label
+            >
+            <select id="campus" name="campus" class="contact__select" required>
+              <option value="">選択してください</option>
+              <option value="京大本校">京大本校</option>
+              <option value="梅田校">梅田校</option>
+              <option value="東京飯田橋校">東京飯田橋校</option>
+              <option value="横浜校">横浜校</option>
+              <option value="秋葉原校">秋葉原校</option>
+            </select>
+          </div>
+
+          <div class="contact__form-group">
+            <label for="email" class="contact__label"
+              >メールアドレス <span class="contact__required">必須</span></label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="contact__input"
+              placeholder="example@email.com"
+              required
+            />
+          </div>
+
+          <div class="contact__form-group">
+            <label for="message" class="contact__label"
+              >ご質問・ご希望など</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              class="contact__textarea"
+              rows="5"
+              placeholder="ご質問やご要望がございましたらお聞かせください。"
+            ></textarea>
+          </div>
+
+          <div class="contact__form-group">
+            <button type="submit" class="contact__submit-btn">送信する</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      // フォームのバリデーション処理
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".contact__form");
+        const submitBtn = document.querySelector(".contact__submit-btn");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // フォームバリデーション
+          const name = document.getElementById("name").value.trim();
+          const grade = document.getElementById("grade").value;
+          const school = document.getElementById("school").value.trim();
+          const campus = document.getElementById("campus").value;
+          const email = document.getElementById("email").value.trim();
+
+          // エラーメッセージをクリア
+          clearErrors();
+
+          let hasError = false;
+
+          // 名前のバリデーション
+          if (!name) {
+            showError("name", "お名前を入力してください。");
+            hasError = true;
+          }
+
+          // 学年のバリデーション
+          if (!grade) {
+            showError("grade", "学年を選択してください。");
+            hasError = true;
+          }
+
+          // 学校名のバリデーション
+          if (!school) {
+            showError("school", "学校名を入力してください。");
+            hasError = true;
+          }
+
+          // 校舎のバリデーション
+          if (!campus) {
+            showError("campus", "ご希望の校舎を選択してください。");
+            hasError = true;
+          }
+
+          // メールアドレスのバリデーション
+          if (!email) {
+            showError("email", "メールアドレスを入力してください。");
+            hasError = true;
+          } else if (!isValidEmail(email)) {
+            showError("email", "正しいメールアドレスを入力してください。");
+            hasError = true;
+          }
+
+          // エラーがなければ送信処理
+          if (!hasError) {
+            submitForm();
+          }
+        });
+
+        function showError(fieldId, message) {
+          const field = document.getElementById(fieldId);
+          field.classList.add("error");
+
+          const errorElement = document.createElement("span");
+          errorElement.className = "contact__error";
+          errorElement.textContent = message;
+
+          field.parentNode.appendChild(errorElement);
+        }
+
+        function clearErrors() {
+          const errorElements = document.querySelectorAll(".contact__error");
+          errorElements.forEach((el) => el.remove());
+
+          const errorFields = document.querySelectorAll(
+            ".contact__input.error, .contact__select.error"
+          );
+          errorFields.forEach((field) => field.classList.remove("error"));
+        }
+
+        function isValidEmail(email) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        }
+
+        function submitForm() {
+          submitBtn.classList.add("loading");
+          submitBtn.disabled = true;
+
+          // 実際の送信処理をここに実装
+          // 今回はサンプルとして3秒後に完了とする
+          setTimeout(() => {
+            submitBtn.classList.remove("loading");
+            submitBtn.disabled = false;
+
+            // 成功メッセージを表示
+            showSuccessMessage();
+
+            // フォームをリセット
+            form.reset();
+          }, 3000);
+        }
+
+        function showSuccessMessage() {
+          const successMessage = document.createElement("div");
+          successMessage.className = "contact__success show";
+          successMessage.textContent =
+            "お問い合わせありがとうございます。内容を確認のうえ、お返事いたします。";
+
+          form.appendChild(successMessage);
+
+          // 5秒後に成功メッセージを非表示
+          setTimeout(() => {
+            successMessage.classList.remove("show");
+            setTimeout(() => {
+              successMessage.remove();
+            }, 300);
+          }, 5000);
+        }
+      });
+    </script>
+
+    <script>
+      // スクロール時のふわっと浮かび上がるアニメーション（文字と画像のみ）
+      document.addEventListener("DOMContentLoaded", function () {
+        // アニメーション対象の要素を取得（テキストと画像のみ）
+        const animationTargets = document.querySelectorAll(`
+    .skills__title,
+    .skills__subtitle,
+    .skills__thirdtitle,
+    .skills__motion-text,
+    .skills__img,
+    .sns__subtitle,
+    .sns__lead,
+    .sns__img,
+    .voices__title,
+    .voices__card,
+    .trial__content,
+    .trial__left,
+    .trial__right,
+    .trial__title,
+    .trial__points,
+    .trial__balloon,
+    .trial__img,
+    .trial__cta-button,
+    .reason__title,
+    .reason__balloon,
+    .reason__person,
+    .dropout__title,
+    .dropout__subtitle,
+    .dropout__person,
+    .reason2__item,
+    .trial2__content,
+    .trial2__left,
+    .trial2__right,
+    .trial2__title,
+    .trial2__points,
+    .trial2__balloon,
+    .trial2__img,
+    .trial2__cta-button,
+    .curriculum__title,
+    .curriculum__intro,
+    .curriculum__column,
+    .classscene__title,
+    .classscene__list,
+    .classscene__img,
+    .teachers__title,
+    .teachers__subtitle,
+    .teachers__card,
+    .price__title,
+    .price__headline,
+    .price__list > li,
+    .price__schools > div,
+    .faq__title,
+    .faq__group,
+    .contact__title,
+    .contact__subtitle,
+    .contact__form-group
+  `);
+
+        // 初期状態を設定
+        animationTargets.forEach((target, index) => {
+          if (target) {
+            target.style.opacity = "0";
+            target.style.transform = "translateY(30px)";
+            target.style.transition =
+              "opacity 0.8s ease-out, transform 0.8s ease-out";
+          }
+        });
+
+        // Intersection Observer の設定
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // 段階的アニメーション（同じセクション内の要素を順番に表示）
+                const parentSection =
+                  entry.target.closest("section") ||
+                  entry.target.closest(".faq-bg-top") ||
+                  entry.target.closest(".faq-bg-bottom");
+                if (parentSection) {
+                  const sectionElements = parentSection.querySelectorAll(`
+            .skills__title,
+            .skills__subtitle,
+            .skills__thirdtitle,
+            .skills__motion-text,
+            .skills__img,
+            .sns__subtitle,
+            .sns__lead,
+            .sns__img,
+            .voices__title,
+            .voices__card,
+            .trial__content,
+            .trial__left,
+            .trial__right,
+            .trial__title,
+            .trial__points,
+            .trial__balloon,
+            .trial__img,
+            .trial__cta-button,
+            .reason__title,
+            .reason__balloon,
+            .reason__person,
+            .dropout__title,
+            .dropout__subtitle,
+            .dropout__person,
+            .reason2__item,
+            .trial2__content,
+            .trial2__left,
+            .trial2__right,
+            .trial2__title,
+            .trial2__points,
+            .trial2__balloon,
+            .trial2__img,
+            .trial2__cta-button,
+            .curriculum__title,
+            .curriculum__intro,
+            .curriculum__column,
+            .classscene__title,
+            .classscene__list,
+            .classscene__img,
+            .teachers__title,
+            .teachers__subtitle,
+            .teachers__card,
+            .price__title,
+            .price__headline,
+            .price__list > li,
+            .price__schools > div,
+            .faq__title,
+            .faq__group,
+            .contact__title,
+            .contact__subtitle,
+            .contact__form-group
+          `);
+
+                  sectionElements.forEach((element, index) => {
+                    if (element && element.style.opacity === "0") {
+                      setTimeout(() => {
+                        element.style.opacity = "1";
+                        element.style.transform = "translateY(0)";
+                      }, index * 150); // 150ms間隔で順番にアニメーション
+                    }
+                  });
+                }
+
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "0px 0px -100px 0px",
+            threshold: 0.1,
+          }
+        );
+
+        // 各セクションを監視
+        const sectionsToObserve = document.querySelectorAll(
+          "section, .faq-bg-top, .faq-bg-bottom"
+        );
+        sectionsToObserve.forEach((section) => {
+          if (section) {
+            observer.observe(section);
+          }
+        });
+
+        // フォールバック：10秒後に全要素を強制表示
+        setTimeout(() => {
+          animationTargets.forEach((target) => {
+            if (target && target.style.opacity === "0") {
+              target.style.opacity = "1";
+              target.style.transform = "translateY(0)";
+            }
+          });
+        }, 10000);
+      });
+
+      // ====== デバイス判定によるデザイン切り替え ======
+      document.addEventListener("DOMContentLoaded", function () {
+        function applyDeviceSpecificStyles() {
+          const skillsSection = document.querySelector(".skills");
+          const snsSection = document.querySelector(".sns");
+
+          // 画面幅による判定（768px以上をPC版とする）
+          if (window.innerWidth >= 768) {
+            // PC版スタイルを適用
+            if (skillsSection) {
+              skillsSection.classList.add("skills--pc");
+              skillsSection.classList.remove("skills--mobile");
+            }
+            if (snsSection) {
+              snsSection.classList.add("sns--pc");
+              snsSection.classList.remove("sns--mobile");
+            }
+          } else {
+            // スマホ版スタイルを適用（現在のデフォルトスタイル）
+            if (skillsSection) {
+              skillsSection.classList.remove("skills--pc");
+              skillsSection.classList.add("skills--mobile");
+            }
+            if (snsSection) {
+              snsSection.classList.remove("sns--pc");
+              snsSection.classList.add("sns--mobile");
+            }
+          }
+        }
+
+        // 初回実行
+        applyDeviceSpecificStyles();
+
+        // リサイズ時にも実行
+        window.addEventListener("resize", function () {
+          applyDeviceSpecificStyles();
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -629,10 +629,11 @@ body {
   background: #252a41;
   color: #fff;
   position: relative;
-  padding: 0 0 0 0; /* ← 90px から減らすことで上に移動 */
+  padding: 0; /* 全ての余白を完全に削除 */
   min-height: 540px;
   overflow: visible;
   margin-top: -100px;
+  margin-bottom: 0; /* 下の余白も完全に削除 */
 }
 
 /* モバイル対応: dropoutセクションの調整 */
@@ -728,11 +729,11 @@ body {
     font-size: 2.1rem;
   }
 }
-/* ====== dropoutセクションのsubtitleと矢印を画面下中央に配置し、矢印が2セクションにまたがるように ====== */
+/* ====== dropoutセクションのsubtitle配置調整 ====== */
 .dropout__bottom {
   position: absolute;
   left: 50%;
-  bottom: -60px;
+  bottom: 20px; /* 矢印は独立した要素で管理するため、bottomの位置を調整 */
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
@@ -747,52 +748,75 @@ body {
   font-size: 2.6rem;
   font-weight: bold;
   color: #fff;
-  margin-bottom: 22px;
-  top: -80px;
+  margin-bottom: 0; /* 矢印との距離を0pxに */
+  top: 0; /* 80px下に移動 */
   letter-spacing: 0.04em;
   text-align: center;
   pointer-events: auto;
   position: relative;
 }
-.dropout__arrows {
+/* ====== 矢印ブリッジ - reason2内に配置してdropoutとreason2にまたがらせる ====== */
+.reason2__arrows-bridge {
+  position: absolute;
+  top: -80px; /* reason2セクションの上80px上に配置 */
+  left: 0;
+  width: 100%;
+  height: 120px; /* dropoutとreason2にまたがる高さ */
+  z-index: 20; /* 他の要素より上に表示 */
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reason2__arrows {
   display: flex;
   justify-content: center;
   gap: 24px;
-  margin-top: -40px;
-  margin-bottom: 180px; /* 矢印を大きく下にはみ出させて2セクションにまたがる */
+  margin: 0;
+  padding: 0;
   position: relative;
-  z-index: 11;
+  z-index: 21;
   pointer-events: auto;
 }
 
-.dropout__arrow {
+.reason2__arrow {
   font-size: 5rem;
   font-weight: bold;
   color: #f13c25;
   margin-bottom: 0;
-  line-height: 0.8;
+  line-height: 0.5;
   filter: drop-shadow(0 2px 0 #d83c21);
+  text-shadow: 0 0 10px rgba(241, 60, 37, 0.5); /* より強い影で目立たせる */
 }
 
-/* モバイル対応: 矢印の調整 */
+/* モバイル対応: 矢印ブリッジの調整 */
 @media (max-width: 768px) {
-  .dropout__arrows {
-    gap: 18px;
-    margin-bottom: 140px;
+  .reason2__arrows-bridge {
+    top: -60px;
+    height: 100px;
   }
 
-  .dropout__arrow {
+  .reason2__arrows {
+    gap: 18px;
+  }
+
+  .reason2__arrow {
     font-size: 4rem;
   }
 }
 
 @media (max-width: 480px) {
-  .dropout__arrows {
-    gap: 12px;
-    margin-bottom: 100px;
+  .reason2__arrows-bridge {
+    top: -50px;
+    height: 80px;
   }
 
-  .dropout__arrow {
+  .reason2__arrows {
+    gap: 12px;
+  }
+
+  .reason2__arrow {
     font-size: 3rem;
   }
 }
@@ -800,7 +824,7 @@ body {
 .dropout__person {
   position: absolute;
   right: 1vw;
-  bottom: 0;
+  bottom: 120px; /* さらに40px上に移動（合計120px上） */
   width: 240px;
   z-index: 3;
 }
@@ -813,7 +837,7 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(34, 56, 110, 0.6); /* ← 青みがかった色 */
-  z-index: 1;
+  z-index: 2; /* 背景画像の上、矢印の下 */
 }
 
 /* ====== reason2 セクション調整（背景を画面いっぱいに） ====== */
@@ -824,10 +848,10 @@ body {
   background-repeat: no-repeat;
   padding: 60px 0 60px 0; /* 上下に余白を追加し背景を広く見せる */
   position: relative;
-  z-index: 0;
+  z-index: 1; /* 矢印より下に配置 */
   text-align: center;
   color: #fff;
-  margin-top: -140px; /* dropoutの矢印と重なるようにさらに詰める */
+  margin-top: 0; /* arrows-bridgeと隙間なく接続 */
   margin-bottom: 0; /* trial2との隙間をなくす */
   min-height: 480px; /* 背景の縦幅を確保 */
 }
@@ -836,7 +860,7 @@ body {
 @media (max-width: 768px) {
   .reason2 {
     padding: 40px 0 40px 0;
-    margin-top: -100px;
+    margin-top: 0; /* arrows-bridgeと隙間なく接続 */
     min-height: 360px;
   }
 }
@@ -844,7 +868,7 @@ body {
 @media (max-width: 480px) {
   .reason2 {
     padding: 30px 0 30px 0;
-    margin-top: -80px;
+    margin-top: 0; /* arrows-bridgeと隙間なく接続 */
     min-height: 280px;
   }
 }
@@ -858,7 +882,7 @@ body {
   max-width: 80%;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   position: relative;
-  z-index: 2;
+  z-index: 3; /* 矢印の下に配置 */
   margin: 40px auto 0 auto; /* 上のmarginを詰める */
   transition: box-shadow 0.2s;
 }
@@ -1978,3 +2002,5 @@ body {
     padding: 14px 24px;
   }
 }
+
+

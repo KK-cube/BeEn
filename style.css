@@ -292,14 +292,14 @@ body {
   padding: 12px 36px;
   border-radius: 18px;
   box-shadow: 0 4px 16px rgba(40, 40, 60, 0.12);
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   text-align: center;
 }
 .skills__thirdtitle {
   font-size: 40px;
   font-weight: bold;
   color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   text-align: center;
   display: block;
 }
@@ -709,7 +709,6 @@ body {
   z-index: 2;
   margin-bottom: 160px;
 }
-
 
 /* ====== 挫折率（dropout）セクション ====== */
 .dropout {
@@ -1612,6 +1611,7 @@ body {
   max-width: none;
   margin: 0;
   padding: 0;
+  padding-top: 24px;
 }
 
 .skills--pc .skills__title {
@@ -1629,8 +1629,8 @@ body {
 .skills--pc .skills__motion-text {
   margin-left: 680px;
   margin-top: -10px;
+  margin-bottom: 36px;
   font-size: 24px;
-  margin-bottom: 0;
   text-align: left;
   position: relative;
   z-index: 2;
@@ -1645,7 +1645,8 @@ body {
   padding: 12px 36px;
   border-radius: 18px;
   box-shadow: 0 4px 16px rgba(40, 40, 60, 0.12);
-  margin: -110px 0 0 750px;
+  margin: -86px 0 0 750px;
+  margin-bottom: 36px;
   text-align: center;
   position: relative;
   z-index: 3;
@@ -1655,7 +1656,7 @@ body {
   font-size: 40px;
   font-weight: bold;
   color: #fff;
-  margin: 8px 0 20px 710px;
+  margin: 8px 0 36px 710px;
   text-align: center;
   display: inline-block;
   position: relative;
@@ -1667,7 +1668,7 @@ body {
   max-width: none;
   width: 480px;
   height: 300px;
-  margin: -120px 0 0 80px;
+  margin: -200px 0 0 80px;
   border-radius: 24px;
   box-shadow: 0 8px 32px rgba(30, 40, 70, 0.18);
   border: 4px solid #fff;
@@ -2415,7 +2416,9 @@ body {
     justify-content: flex-start !important;
     padding: 15px 15px 0 15px !important;
     gap: 10px !important;
-    max-width: calc(100vw - 80px) !important; /* ハンバーガーボタンのスペースを確保 */
+    max-width: calc(
+      100vw - 80px
+    ) !important; /* ハンバーガーボタンのスペースを確保 */
   }
 
   .header__info {
@@ -2425,7 +2428,9 @@ body {
     align-items: flex-start !important;
     margin-top: 0 !important;
     margin-left: 8px !important;
-    max-width: calc(100% - 60px) !important; /* ハンバーガーボタンとの重なりを防ぐ */
+    max-width: calc(
+      100% - 60px
+    ) !important; /* ハンバーガーボタンとの重なりを防ぐ */
   }
 
   .header__catch {
@@ -2486,7 +2491,9 @@ body {
   .header__inner {
     padding: 12px 12px 0 12px !important;
     gap: 6px !important;
-    max-width: calc(100vw - 70px) !important; /* ハンバーガーボタンのスペースを確保 */
+    max-width: calc(
+      100vw - 70px
+    ) !important; /* ハンバーガーボタンのスペースを確保 */
     align-items: center !important;
   }
 
@@ -2494,25 +2501,27 @@ body {
     gap: 0 !important;
     margin-top: 0 !important;
     margin-left: 4px !important;
-    max-width: calc(100% - 50px) !important; /* ハンバーガーボタンとの重なりを防ぐ */
+    max-width: calc(
+      100% - 50px
+    ) !important; /* ハンバーガーボタンとの重なりを防ぐ */
   }
 
   .header__catch {
     font-size: 0.65rem !important;
     margin-bottom: 0 !important;
-    line-height: 1.0 !important;
+    line-height: 1 !important;
   }
 
   .header__subtitle {
     font-size: 0.75rem !important;
     margin-bottom: 0 !important;
-    line-height: 1.0 !important;
+    line-height: 1 !important;
   }
 
   .header__schools {
     font-size: 0.6rem !important;
     margin-top: 0 !important;
-    line-height: 1.0 !important;
+    line-height: 1 !important;
   }
 
   .header__logo-img {

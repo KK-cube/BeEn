@@ -694,18 +694,18 @@ body {
 
 .reason__balloon::after {
   content: "";
-  display: block;
   position: absolute;
-  right: -60px;
-  bottom: -25px;
-  width: 130px;
-  height: 80px;
-  background: transparent;
-  border-bottom: 6px solid #232734;
-  border-right: 6px solid #232734;
-  border-radius: 0 0 60px 60px;
-  transform: rotate(18deg);
-  z-index: 1;
+  right: 90px;
+  bottom: -6px;
+  transform: none;
+  width: 0;
+  height: 0;
+  border-left: 28px solid transparent;
+  border-right: 28px solid transparent;
+  border-top: 32px solid #fff;
+  z-index: 2;
+  /* 黒い縁取り */
+  filter: drop-shadow(0 2px 0 #232734) drop-shadow(0 -2px 0 #232734);
 }
 
 .reason__person {

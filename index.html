@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+    <!-- SEO meta -->
+    <meta name="description" content="中高生のための実践的プログラミング教室BeEngineerの公式サイト。1年間でWebサイト開発、2年目でSNS開発ができるカリキュラム。無料体験受付中。">
+    <!-- OGP & Twitter Card -->
+    <meta property="og:title" content="BeEngineer | 中高生のためのプログラミング教室">
+    <meta property="og:description" content="1年間でWebサイト開発、2年目でSNS開発ができるカリキュラム。無料体験受付中。">
+    <meta property="og:image" content="https://your-domain.com/ogp.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- 構造化データ（Organization例） -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "BeEngineer",
+      "url": "https://your-domain.com/",
+      "logo": "https://your-domain.com/logo.png",
+      "description": "中高生のための実践的プログラミング教室BeEngineerの公式サイト。1年間でWebサイト開発、2年目でSNS開発ができるカリキュラム。無料体験受付中。"
+    }
+    </script>
     <meta charset="UTF-8" />
     <title>BeEngineer | 中高生のためのプログラミング教室</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -668,15 +688,46 @@
       </div>
     </section>
     <div class="reason__overlap">
-      <svg
-        class="reason__polygon"
-        width="100%"
-        height="80"
-        viewBox="0 0 1920 80"
-        preserveAspectRatio="none"
-      >
-        <polygon points="0,0 1920,30 1920,40 0,40" fill="#252A41" />
-      </svg>
+      <!-- 不要なpolygonを削除 -->
+      <style>
+        @media (max-width: 768px) {
+          .reason__polygon {
+            height: 100px !important;
+            min-height: 60px;
+          }
+        }
+        @media (max-width: 480px) {
+          .reason__polygon {
+            height: 70px !important;
+            min-height: 40px;
+          }
+        }
+      </style>
+      <script>
+        // レスポンシブでpolygonの形状を切り替え
+        function updateReasonPolygon() {
+          var svg = document.querySelector('.reason__polygon');
+          if (!svg) return;
+          var polygon = svg.querySelector('polygon');
+          if (!polygon) return;
+          if (window.innerWidth <= 480) {
+            svg.setAttribute('height', '76');
+            svg.setAttribute('viewBox', '0 0 1920 76');
+            polygon.setAttribute('points', '0,0 0,76 1920,32 1920,76');
+          } else if (window.innerWidth <= 768) {
+            svg.setAttribute('height', '106');
+            svg.setAttribute('viewBox', '0 0 1920 106');
+            polygon.setAttribute('points', '0,0 0,106 1920,40 1920,106');
+          } else {
+            svg.setAttribute('height', '86');
+            svg.setAttribute('viewBox', '0 0 1920 86');
+            polygon.setAttribute('points', '0,0 0,86 1920,32 1920,86');
+          }
+        }
+        window.addEventListener('DOMContentLoaded', updateReasonPolygon);
+        window.addEventListener('resize', updateReasonPolygon);
+      </script>
+      </style>
     </div>
     <section class="dropout">
       <div class="dropout__inner">
@@ -689,9 +740,9 @@
               >といわれています！！
             </span>
           </h2>
-          <div class="dropout__bottom">
-            <span class="dropout__subtitle">しかし、BeEnなら…！</span>
-          </div>
+        </div>
+        <div class="dropout__bottom">
+          <span class="dropout__subtitle">しかし、BeEnなら…！</span>
         </div>
         <img
           src="dropout_person.png"

@@ -55,6 +55,46 @@
       </div>
     </header>
 
+    <!-- ハンバーガーメニュー -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+      <div class="hamburger-menu__overlay" id="hamburgerOverlay"></div>
+      <div class="hamburger-menu__content">
+        <div class="hamburger-menu__header">
+          <button class="hamburger-menu__close" id="hamburgerClose" aria-label="メニューを閉じる">
+            <span class="hamburger-menu__close-icon">×</span>
+          </button>
+        </div>
+        
+        <div class="hamburger-menu__body">
+          <!-- ナビゲーション -->
+          <div class="hamburger-menu__section">
+            <h3 class="hamburger-menu__section-title">ナビゲーション</h3>
+            <ul class="hamburger-menu__list">
+              <li><a href="#hero" class="hamburger-menu__link">トップ</a></li>
+              <li><a href="#about" class="hamburger-menu__link">BeEngineerとは</a></li>
+              <li><a href="#reason" class="hamburger-menu__link">選ばれる理由</a></li>
+              <li><a href="#skills" class="hamburger-menu__link">身につくスキル</a></li>
+              <li><a href="#teachers" class="hamburger-menu__link">講師紹介</a></li>
+              <li><a href="#voices" class="hamburger-menu__link">受講生の声</a></li>
+              <li><a href="#contact" class="hamburger-menu__link">無料体験申し込み</a></li>
+              <li><a href="#" class="hamburger-menu__link">運営会社</a></li>
+            </ul>
+          </div>
+
+          <!-- リンク・規約 -->
+          <div class="hamburger-menu__section">
+            <h3 class="hamburger-menu__section-title">リンク・規約</h3>
+            <ul class="hamburger-menu__list">
+              <li><a href="#" class="hamburger-menu__link">プライバシーポリシー</a></li>
+              <li><a href="#" class="hamburger-menu__link">利用規約</a></li>
+              <li><a href="#" class="hamburger-menu__link">特定商取引法に基づく表記</a></li>
+              <li><a href="#" class="hamburger-menu__link">お問い合わせ</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ====== ファーストビュー（現状のまま） ====== -->
     <section class="hero">
       <div class="hero__overlay"></div>
@@ -1268,6 +1308,61 @@
         // リサイズ時にも実行
         window.addEventListener("resize", function () {
           applyDeviceSpecificStyles();
+        });
+      });
+    </script>
+
+    <script>
+      // ハンバーガーメニューの制御
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburgerButton = document.querySelector(".header__menu-button");
+        const hamburgerMenu = document.getElementById("hamburgerMenu");
+        const hamburgerOverlay = document.getElementById("hamburgerOverlay");
+        const hamburgerClose = document.getElementById("hamburgerClose");
+        const hamburgerLinks = document.querySelectorAll(".hamburger-menu__link");
+
+        // メニューを開く
+        function openMenu() {
+          hamburgerMenu.classList.add("active");
+          document.body.classList.add("menu-open");
+        }
+
+        // メニューを閉じる
+        function closeMenu() {
+          hamburgerMenu.classList.remove("active");
+          document.body.classList.remove("menu-open");
+        }
+
+        // ハンバーガーボタンクリック
+        hamburgerButton.addEventListener("click", function() {
+          openMenu();
+        });
+
+        // 閉じるボタンクリック
+        hamburgerClose.addEventListener("click", function() {
+          closeMenu();
+        });
+
+        // オーバーレイクリック
+        hamburgerOverlay.addEventListener("click", function() {
+          closeMenu();
+        });
+
+        // メニューリンククリック（ページ内リンクの場合は閉じる）
+        hamburgerLinks.forEach(function(link) {
+          link.addEventListener("click", function(e) {
+            const href = this.getAttribute("href");
+            if (href.startsWith("#") && href !== "#") {
+              closeMenu();
+            }
+          });
+        });
+
+        // ESCキーでメニューを閉じる
+        document.addEventListener("keydown", function(e) {
+          if (e.key === "Escape" && hamburgerMenu.classList.contains("active")) {
+            closeMenu();
+          }
         });
       });
     </script>

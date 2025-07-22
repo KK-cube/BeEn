@@ -675,22 +675,6 @@ body {
   min-height: 120px;
 }
 
-.reason__balloon::after {
-  content: "";
-  position: absolute;
-  right: 90px;
-  bottom: -6px;
-  transform: none;
-  width: 0;
-  height: 0;
-  border-left: 28px solid transparent;
-  border-right: 28px solid transparent;
-  border-top: 32px solid #fff;
-  z-index: 2;
-  /* 黒い縁取り */
-  filter: drop-shadow(0 2px 0 #232734) drop-shadow(0 -2px 0 #232734);
-}
-
 .reason__person {
   position: absolute;
   right: 0;
@@ -741,6 +725,54 @@ body {
       #252a41 100%
     );
     padding: 56px 0 80px 0;
+  }
+}
+
+/* レスポンシブ対応: reasonセクションの要素配置調整 */
+@media (max-width: 768px) {
+  .reason__balloon-wrap {
+    min-height: 150px;
+    margin-bottom: 80px; /* 余白を狭く調整 */
+  }
+
+  .reason__balloon {
+    font-size: 24px;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 32px 40px;
+    margin-top: 20px;
+  }
+
+  .reason__person {
+    position: static; /* 絶対配置を解除 */
+    width: 120px;
+    margin: 10px auto 0 auto; /* 上マージンを狭く */
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .reason__balloon-wrap {
+    min-height: 120px;
+    margin-bottom: 60px; /* さらに狭く調整 */
+  }
+
+  .reason__balloon {
+    font-size: 18px;
+    min-width: 250px;
+    max-width: 350px;
+    padding: 24px 30px;
+    margin-top: 10px;
+  }
+
+  .reason__person {
+    width: 100px;
+    margin: 8px auto 0 auto; /* 上マージンを狭く */
+  }
+
+  .reason__title {
+    font-size: 20px;
+    padding: 10px 30px;
   }
 }
 

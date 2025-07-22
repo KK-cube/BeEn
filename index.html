@@ -29,478 +29,7 @@
       href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap"
       rel="stylesheet"
     />
-    <style>
-      /* カリキュラムセクション：横並びレイアウト */
-      .curriculum {
-        background: #ffffff;
-        padding: 60px 0;
-      }
-
-      .curriculum__inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      .curriculum__title {
-        color: #000000;
-        font-size: 32px;
-        text-align: center;
-        margin-bottom: 20px;
-        font-weight: bold;
-      }
-
-      .curriculum__intro {
-        color: #000000;
-        text-align: center;
-        margin-bottom: 40px;
-        font-size: 16px;
-      }
-
-      /* カリキュラムセクションの横並びレイアウト */
-      .curriculum__content {
-        display: flex;
-        gap: 30px;
-        margin-top: 40px;
-        justify-content: space-between;
-        align-items: flex-start;
-      }
-
-      .curriculum__column {
-        flex: 1;
-        background: #ffffff;
-        border-radius: 12px;
-        padding: 30px 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid #e0e0e0;
-      }
-
-      .curriculum__column:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      }
-
-      .curriculum__column-header {
-        text-align: center;
-        margin-bottom: 25px;
-        border-bottom: 2px solid #252a41;
-        padding-bottom: 15px;
-      }
-
-      .curriculum__column-title {
-        font-size: 20px;
-        font-weight: bold;
-        color: #252a41;
-        margin-bottom: 8px;
-      }
-
-      .curriculum__column-subtitle {
-        font-size: 14px;
-        color: #666;
-        margin: 0;
-      }
-
-      .curriculum__skills,
-      .curriculum__process-skills,
-      .curriculum__advanced-skills {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .curriculum__skill,
-      .curriculum__process-skill,
-      .curriculum__advanced-skill {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 15px;
-        background: #f8f9fa;
-        border-radius: 8px;
-        border-left: 4px solid #7e83c0;
-      }
-
-      .curriculum__skill-icon,
-      .curriculum__process-icon,
-      .curriculum__advanced-icon {
-        color: #7e83c0;
-        font-weight: bold;
-        font-size: 16px;
-        flex-shrink: 0;
-        margin-top: 2px;
-      }
-
-      .curriculum__skill-text,
-      .curriculum__process-text,
-      .curriculum__advanced-text {
-        color: #333;
-        font-size: 14px;
-        line-height: 1.5;
-        margin: 0;
-      }
-
-      /* レスポンシブ対応 */
-      @media (max-width: 768px) {
-        .curriculum__content {
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .curriculum__column {
-          padding: 20px 15px;
-          margin-bottom: 15px;
-        }
-
-        .curriculum__column-title {
-          font-size: 18px;
-        }
-
-        .faq__title {
-          font-size: 28px;
-        }
-
-        .faq__container {
-          padding: 0 15px;
-        }
-
-        .faq__group {
-          width: calc(100vw - 30px);
-          max-width: 95vw;
-          padding: 25px 15px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .curriculum__content {
-          gap: 15px;
-        }
-
-        .curriculum__column {
-          padding: 15px 12px;
-        }
-
-        .curriculum__column-title {
-          font-size: 16px;
-        }
-
-        .curriculum__skill-text,
-        .curriculum__process-text,
-        .curriculum__advanced-text {
-          font-size: 13px;
-        }
-
-        .faq__title {
-          font-size: 24px;
-        }
-
-        .faq__container {
-          padding: 0 10px;
-        }
-
-        .faq__group {
-          width: calc(100vw - 20px);
-          max-width: 98vw;
-          padding: 20px 12px;
-        }
-
-        .faq__category {
-          font-size: 16px;
-        }
-
-        .faq__question-text {
-          font-size: 14px;
-        }
-      }
-
-      /* 料金、FAQ、無料体験セクションの背景調整 */
-      .price {
-        background: #ffffff;
-        margin: 0;
-        padding: 60px 0;
-      }
-
-      .faq-bg-top,
-      .faq-bg-bottom {
-        background: #252a41 !important;
-        height: 20px;
-        margin: 0;
-        width: 100%;
-      }
-
-      /* FAQセクション - 完全リニューアル版 */
-      .faq {
-        background: #252a41 !important;
-        padding: 50px 0; /* 80pxから50pxに縮小 */
-        margin: 0;
-        width: 100%;
-        min-height: 400px; /* 600pxから400pxに縮小 */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-      }
-
-      .faq__title {
-        color: #ffffff;
-        font-size: 48px;
-        font-weight: bold;
-        text-align: center;
-        margin: 0 0 40px 0; /* 60pxから40pxに縮小 */
-        letter-spacing: 0.03em;
-      }
-
-      .faq__wrapper {
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .faq__panel {
-        background: #ffffff;
-        border-radius: 16px;
-        padding: 30px; /* 40pxから30pxに縮小 */
-        width: 100%;
-        max-width: 900px;
-        margin: 0 auto 25px auto; /* 40pxから25pxに縮小 */
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        box-sizing: border-box;
-      }
-
-      .faq__category {
-        color: #252a41;
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 20px; /* 30pxから20pxに縮小 */
-        padding-bottom: 10px; /* 15pxから10pxに縮小 */
-        border-bottom: 3px solid #7e83c0;
-        text-align: center;
-      }
-
-      .faq__item {
-        margin-bottom: 15px; /* 20pxから15pxに縮小 */
-        border: 1px solid #e0e0e0;
-        border-radius: 12px;
-        overflow: hidden;
-        background: #ffffff;
-      }
-
-      .faq__question {
-        background: #f8f9fa;
-        border: none;
-        padding: 16px; /* 20pxから16pxに縮小 */
-        width: 100%;
-        text-align: left;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        font-size: 16px;
-        font-weight: 600;
-        color: #333;
-        transition: background-color 0.3s ease;
-        border-radius: 12px 12px 0 0;
-      }
-
-      .faq__question:hover {
-        background: #e9ecef;
-      }
-
-      .faq__question.active {
-        background: #e3f2fd;
-        border-radius: 12px 12px 0 0;
-      }
-
-      .faq__icon {
-        background: #7e83c0;
-        color: #ffffff;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-        font-weight: bold;
-        flex-shrink: 0;
-      }
-
-      .faq__question-text {
-        flex: 1;
-        color: #333;
-        font-weight: 600;
-      }
-
-      .faq__toggle-icon {
-        color: #7e83c0;
-        font-size: 20px;
-        font-weight: bold;
-        flex-shrink: 0;
-        transition: transform 0.3s ease;
-      }
-
-      .faq__question.active .faq__toggle-icon {
-        transform: rotate(45deg);
-      }
-
-      .faq__answer {
-        background: #ffffff;
-        padding: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease, padding 0.3s ease;
-      }
-
-      .faq__answer.show {
-        max-height: 200px;
-        padding: 16px; /* 20pxから16pxに縮小 */
-      }
-
-      .faq__answer-content {
-        display: flex;
-        align-items: flex-start;
-        gap: 15px;
-      }
-
-      .faq__answer .faq__icon {
-        background: #252a41;
-      }
-
-      .faq__answer-text {
-        flex: 1;
-        color: #333;
-        font-size: 15px;
-        line-height: 1.7;
-        margin: 0;
-      }
-
-      /* レスポンシブ対応 */
-      @media (max-width: 768px) {
-        .faq {
-          padding: 60px 0;
-        }
-
-        .faq__title {
-          font-size: 36px;
-          margin-bottom: 40px;
-        }
-
-        .faq__wrapper {
-          padding: 0 15px;
-        }
-
-        .faq__panel {
-          padding: 30px 20px;
-          margin-bottom: 30px;
-        }
-
-        .faq__category {
-          font-size: 20px;
-          margin-bottom: 25px;
-        }
-
-        .faq__question {
-          padding: 12px; /* 15pxから12pxに縮小 */
-          font-size: 15px;
-        }
-
-        .faq__question-text {
-          font-size: 15px;
-        }
-
-        .faq__answer.show {
-          padding: 12px; /* 15pxから12pxに縮小 */
-        }
-
-        .faq__answer-text {
-          font-size: 14px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .faq {
-          padding: 30px 0; /* 40pxから30pxに縮小 */
-        }
-
-        .faq__title {
-          font-size: 28px;
-          margin-bottom: 25px; /* 30pxから25pxに縮小 */
-        }
-
-        .faq__wrapper {
-          padding: 0 10px;
-        }
-
-        .faq__panel {
-          padding: 15px; /* 20px 15pxから15pxに統一・縮小 */
-          margin-bottom: 15px; /* 20pxから15pxに縮小 */
-        }
-
-        .faq__category {
-          font-size: 18px;
-          margin-bottom: 20px;
-        }
-
-        .faq__question {
-          padding: 12px;
-          font-size: 14px;
-          gap: 10px;
-        }
-
-        .faq__icon {
-          width: 24px;
-          height: 24px;
-          font-size: 12px;
-        }
-
-        .faq__question-text {
-          font-size: 14px;
-        }
-
-        .faq__toggle-icon {
-          font-size: 18px;
-        }
-
-        .faq__answer.show {
-          padding: 12px;
-        }
-
-        .faq__answer-text {
-          font-size: 13px;
-        }
-      }
-
-      .trial2 {
-        background: #7e83c0;
-        margin: 0;
-        padding: 32px 0 30px 0; /* trialと完全統一 */
-      }
-
-      /* セクション間の隙間を完全に除去 */
-      .price + .faq-bg-top,
-      .faq-bg-top + .faq,
-      .faq + .faq-bg-bottom,
-      .faq-bg-bottom + .trial2 {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-      }
-
-      /* FAQセクション全体の紺色背景を強制 */
-      .faq-bg-top + .faq + .faq-bg-bottom {
-        background: #252a41 !important;
-      }
-
-      /* 念のため、body の背景色も調整 */
-      body {
-        margin: 0;
-        padding: 0;
-        background: #ffffff;
-      }
-    </style>
+`
   </head>
 
   <body>
@@ -687,48 +216,6 @@
         </div>
       </div>
     </section>
-    <div class="reason__overlap">
-      <!-- 不要なpolygonを削除 -->
-      <style>
-        @media (max-width: 768px) {
-          .reason__polygon {
-            height: 100px !important;
-            min-height: 60px;
-          }
-        }
-        @media (max-width: 480px) {
-          .reason__polygon {
-            height: 70px !important;
-            min-height: 40px;
-          }
-        }
-      </style>
-      <script>
-        // レスポンシブでpolygonの形状を切り替え
-        function updateReasonPolygon() {
-          var svg = document.querySelector('.reason__polygon');
-          if (!svg) return;
-          var polygon = svg.querySelector('polygon');
-          if (!polygon) return;
-          if (window.innerWidth <= 480) {
-            svg.setAttribute('height', '76');
-            svg.setAttribute('viewBox', '0 0 1920 76');
-            polygon.setAttribute('points', '0,0 0,76 1920,32 1920,76');
-          } else if (window.innerWidth <= 768) {
-            svg.setAttribute('height', '106');
-            svg.setAttribute('viewBox', '0 0 1920 106');
-            polygon.setAttribute('points', '0,0 0,106 1920,40 1920,106');
-          } else {
-            svg.setAttribute('height', '86');
-            svg.setAttribute('viewBox', '0 0 1920 86');
-            polygon.setAttribute('points', '0,0 0,86 1920,32 1920,86');
-          }
-        }
-        window.addEventListener('DOMContentLoaded', updateReasonPolygon);
-        window.addEventListener('resize', updateReasonPolygon);
-      </script>
-      </style>
-    </div>
     <section class="dropout">
       <div class="dropout__inner">
         <div class="dropout__texts">
@@ -1272,82 +759,6 @@
         </div>
       </div>
     </section>
-    <script>
-      // FAQ アコーディオン機能 - 完全リニューアル版
-      document.addEventListener("DOMContentLoaded", function () {
-        const toggles = document.querySelectorAll(".js-faq-toggle");
-
-        toggles.forEach((toggle) => {
-          toggle.addEventListener("click", function () {
-            const answer = this.nextElementSibling;
-            const icon = this.querySelector(".faq__toggle-icon");
-            const isOpen = answer.classList.contains("show");
-
-            // 他のすべてのFAQを閉じる
-            toggles.forEach((otherToggle) => {
-              const otherAnswer = otherToggle.nextElementSibling;
-              const otherIcon = otherToggle.querySelector(".faq__toggle-icon");
-
-              otherAnswer.classList.remove("show");
-              otherToggle.classList.remove("active");
-              otherIcon.textContent = "＋";
-            });
-
-            // クリックされたFAQの開閉処理
-            if (!isOpen) {
-              answer.classList.add("show");
-              this.classList.add("active");
-              icon.textContent = "－";
-            }
-          });
-        });
-      });
-
-      // 講師紹介スライダー（無限ループ対応版）
-      document.addEventListener("DOMContentLoaded", function () {
-        const slider = document.querySelector(".teachers__slider");
-        if (!slider) return;
-
-        const cards = slider.querySelectorAll(".teachers__card");
-        const totalCards = cards.length;
-
-        // カードを複製して無限ループを作成
-        cards.forEach((card) => {
-          const clone = card.cloneNode(true);
-          slider.appendChild(clone);
-        });
-
-        // スライダーの設定
-        let currentIndex = 0;
-        const cardWidth = 350; // カード幅 + gap
-
-        // 初期設定
-        slider.style.transition = "transform 0.8s ease-in-out";
-        slider.style.transform = "translateX(0px)";
-
-        function slideNext() {
-          currentIndex++;
-          slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-
-          // 最後のカードに到達したら、アニメーション後に最初に戻る
-          if (currentIndex >= totalCards) {
-            setTimeout(() => {
-              slider.style.transition = "none";
-              currentIndex = 0;
-              slider.style.transform = "translateX(0px)";
-
-              // トランジションを再有効化
-              setTimeout(() => {
-                slider.style.transition = "transform 0.8s ease-in-out";
-              }, 50);
-            }, 800); // アニメーション時間と同じ
-          }
-        }
-
-        // 3秒ごとに自動スライド
-        setInterval(slideNext, 3000);
-      });
-    </script>
 
     <!-- お問い合わせフォーム -->
     <section class="contact">
@@ -1573,6 +984,81 @@
     </script>
 
     <script>
+      // FAQ アコーディオン機能 - 完全リニューアル版
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggles = document.querySelectorAll(".js-faq-toggle");
+
+        toggles.forEach((toggle) => {
+          toggle.addEventListener("click", function () {
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector(".faq__toggle-icon");
+            const isOpen = answer.classList.contains("show");
+
+            // 他のすべてのFAQを閉じる
+            toggles.forEach((otherToggle) => {
+              const otherAnswer = otherToggle.nextElementSibling;
+              const otherIcon = otherToggle.querySelector(".faq__toggle-icon");
+
+              otherAnswer.classList.remove("show");
+              otherToggle.classList.remove("active");
+              otherIcon.textContent = "＋";
+            });
+
+            // クリックされたFAQの開閉処理
+            if (!isOpen) {
+              answer.classList.add("show");
+              this.classList.add("active");
+              icon.textContent = "－";
+            }
+          });
+        });
+      });
+
+      // 講師紹介スライダー（無限ループ対応版）
+      document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.querySelector(".teachers__slider");
+        if (!slider) return;
+
+        const cards = slider.querySelectorAll(".teachers__card");
+        const totalCards = cards.length;
+
+        // カードを複製して無限ループを作成
+        cards.forEach((card) => {
+          const clone = card.cloneNode(true);
+          slider.appendChild(clone);
+        });
+
+        // スライダーの設定
+        let currentIndex = 0;
+        const cardWidth = 350; // カード幅 + gap
+
+        // 初期設定
+        slider.style.transition = "transform 0.8s ease-in-out";
+        slider.style.transform = "translateX(0px)";
+
+        function slideNext() {
+          currentIndex++;
+          slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+          // 最後のカードに到達したら、アニメーション後に最初に戻る
+          if (currentIndex >= totalCards) {
+            setTimeout(() => {
+              slider.style.transition = "none";
+              currentIndex = 0;
+              slider.style.transform = "translateX(0px)";
+
+              // トランジションを再有効化
+              setTimeout(() => {
+                slider.style.transition = "transform 0.8s ease-in-out";
+              }, 50);
+            }, 800); // アニメーション時間と同じ
+          }
+        }
+
+        // 3秒ごとに自動スライド
+        setInterval(slideNext, 3000);
+      });
+
       // スクロール時のふわっと浮かび上がるアニメーション（文字と画像のみ）
       document.addEventListener("DOMContentLoaded", function () {
         // アニメーション対象の要素を取得（テキストと画像のみ）

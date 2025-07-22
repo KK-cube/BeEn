@@ -626,6 +626,7 @@ body {
   padding: 56px 0 120px 0;
   position: relative;
   overflow: visible;
+  margin-bottom: 0; /* 下部マージンを0に設定 */
 }
 
 /* linear-gradientによる斜め線を使用するため、SVGスタイルを削除 */
@@ -658,6 +659,7 @@ body {
   position: relative;
   min-height: 330px;
   text-align: center;
+  margin-bottom: 0; /* 下部マージンを0に設定 */
 }
 
 .reason__balloon {
@@ -736,7 +738,7 @@ body {
 @media (max-width: 768px) {
   .reason__balloon-wrap {
     min-height: 150px;
-    margin-bottom: 80px; /* 余白を狭く調整 */
+    margin-bottom: 0; /* 余白を0に設定して隙間を完全除去 */
   }
 
   .reason__balloon {
@@ -758,7 +760,7 @@ body {
 @media (max-width: 480px) {
   .reason__balloon-wrap {
     min-height: 120px;
-    margin-bottom: 60px; /* さらに狭く調整 */
+    margin-bottom: 0; /* 隙間を完全に除去 */
   }
 
   .reason__balloon {
@@ -784,14 +786,14 @@ body {
 @media (max-width: 768px) {
   .dropout {
     min-height: 400px;
-    margin-top: -100px;
+    margin-top: -100px; /* reasonセクションの下部paddingと一致させる */
   }
 }
 
 @media (max-width: 480px) {
   .dropout {
     min-height: 320px;
-    margin-top: -80px;
+    margin-top: -80px; /* reasonセクションの下部paddingと一致させる */
   }
 }
 .dropout__divider-top {
@@ -3070,4 +3072,114 @@ body {
         padding: 0;
         background: #ffffff;
       }
+
+/* ====== フッター ====== */
+.footer {
+  background: #1a1f35;
+  color: #ffffff;
+  padding: 60px 0 20px 0;
+  margin-top: 0;
+}
+
+.footer__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer__nav-title,
+.footer__links-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffffff;
+  border-bottom: 2px solid #7e83c0;
+  padding-bottom: 8px;
+}
+
+.footer__nav-list,
+.footer__links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__nav-list li,
+.footer__links-list li {
+  margin-bottom: 12px;
+}
+
+.footer__nav-link,
+.footer__links-link {
+  color: #d4d7e6;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer__nav-link:hover,
+.footer__links-link:hover {
+  color: #7e83c0;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 20px 0;
+  }
+
+  .footer__container {
+    padding: 0 15px;
+  }
+
+  .footer__content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  .footer__nav-title,
+  .footer__links-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .footer__nav-link,
+  .footer__links-link {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 30px 0 15px 0;
+  }
+
+  .footer__container {
+    padding: 0 10px;
+  }
+
+  .footer__content {
+    gap: 25px;
+    margin-bottom: 25px;
+  }
+
+  .footer__nav-title,
+  .footer__links-title {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .footer__nav-link,
+  .footer__links-link {
+    font-size: 12px;
+  }
+}
 
